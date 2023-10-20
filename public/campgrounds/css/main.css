@@ -1,0 +1,430 @@
+:root {
+  --main-clr: #191717;
+  --secund-clr: #f1efef;
+  --third-clr: #ccc8aa;
+  --text-clr: #7d7c7c;
+  --positive-clr: #5cb85c;
+  --negative-clr: #ed2939;
+}
+
+/* ? start global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 70px;
+}
+
+.container {
+  padding: 15px;
+  margin: 70px auto;
+}
+@media (min-width: 550px) {
+  .container {
+    width: 520px;
+  }
+}
+@media (min-width: 762px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200) {
+  .container {
+    width: 1170px;
+  }
+}
+
+header nav {
+  background-color: var(--main-clr);
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--secund-clr);
+  position: fixed;
+  z-index: 343434;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  text-transform: capitalize;
+}
+header nav .links-container .menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 4px;
+  cursor: pointer;
+  position: relative;
+}
+@media (min-width: 750px) {
+  header nav .links-container .menu {
+    display: none;
+  }
+}
+header nav .links-container .menu span {
+  display: inline-block;
+  width: 23px;
+  height: 3px;
+  background-color: var(--secund-clr);
+  transition: ease-in-out 0.4s;
+  border-radius: 1.5px;
+}
+header nav .links-container .menu.active span {
+  position: absolute;
+  right: 0;
+}
+header nav .links-container .menu.active span:nth-child(2) {
+  display: none;
+}
+header nav .links-container .menu.active span:nth-child(1) {
+  transform: rotate(45deg);
+}
+header nav .links-container .menu.active span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+header nav .links-container .links {
+  position: absolute;
+  width: 100%;
+  top: 70px;
+  list-style-type: none;
+  z-index: 8888;
+  background-color: var(--main-clr);
+  transition: left 0.4s ease-in-out;
+  left: -100vw;
+}
+@media (min-width: 750px) {
+  header nav .links-container .links {
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+header nav .links-container .links li {
+  padding: 10px 20px;
+}
+header nav .links-container .links li a {
+  text-decoration: none;
+  color: var(--secund-clr);
+  transition: opacity 0.4s linear;
+}
+header nav .links-container .links li a:hover {
+  opacity: 0.8;
+}
+header nav .links-container .links.active {
+  left: 0;
+}
+header nav .links-container .links li.logoutBtn {
+  color: var(--secund-clr);
+}
+header nav .links-container .links li.logoutBtn button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  transition: opacity 0.4s linear;
+}
+header nav .links-container .links li.logoutBtn button:hover {
+  opacity: 0.8;
+}
+
+.btn {
+  margin: 10px 0;
+  color: var(--main-clr);
+  background-color: var(--third-clr);
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: block;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  text-transform: capitalize;
+}
+.btn.danger {
+  background-color: var(--negative-clr);
+  color: var(--secund-clr);
+}
+.btn.positive {
+  background-color: var(--positive-clr);
+  color: var(--secund-clr);
+}
+.btn a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flash {
+  padding: 20px;
+  margin-bottom: 15px;
+  color: var(--text-clr);
+  position: relative;
+  text-transform: capitalize;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.flash.success {
+  background-color: rgba(44, 242, 44, 0.2431372549);
+}
+.flash.error {
+  background-color: rgba(251, 0, 21, 0.1921568627);
+}
+.flash button {
+  position: absolute;
+  z-index: 34;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: 0.4s ease-in-out;
+  color: inherit;
+  padding: 5px;
+}
+.flash button:hover {
+  border: 1px solid var(--text-clr);
+}
+
+footer {
+  background-color: var(--main-clr);
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secund-clr);
+  margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.form-style h2 {
+  text-align: center;
+}
+.form-style .field {
+  padding: 0 10px;
+  max-width: 650px;
+  margin: 15px 0;
+}
+.form-style .field label {
+  display: block;
+  text-transform: capitalize;
+}
+.form-style .field input,
+.form-style .field textarea {
+  margin-top: 7px;
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  background-color: var(--secund-clr);
+  transition: 0.4s ease-in-out;
+  border: 2px solid transparent;
+  border-radius: 7px;
+  line-height: 1.6;
+}
+.form-style .field input:focus,
+.form-style .field textarea:focus {
+  outline: none;
+  border: 2px solid var(--main-clr);
+}
+
+/* ! end global */
+.campgrounds .campground-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+@media (min-width: 762px) {
+  .campgrounds .campground-container {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+}
+.campgrounds .campground-container .image img {
+  display: block;
+  width: 300px;
+}
+.campgrounds .campground-container .text {
+  padding: 10px;
+}
+.campgrounds .campground-container .text .title {
+  font-size: 1.3rem;
+  padding: 10px 0;
+}
+.campgrounds .campground-container .text .description {
+  margin-bottom: 10px;
+  color: var(--text-clr);
+  line-height: 1.6;
+}
+.campgrounds .campground-container .text .location {
+  color: var(--text-clr);
+}
+
+.new .field,
+.edit .field {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.new .field .icon,
+.edit .field .icon {
+  visibility: hidden;
+  position: absolute;
+  right: 20px;
+  top: 38px;
+}
+.new .field input,
+.new .field textarea,
+.edit .field input,
+.edit .field textarea {
+  padding-right: 30px;
+  font-size: 16px;
+}
+.new .field small,
+.edit .field small {
+  visibility: hidden;
+  text-transform: capitalize;
+}
+.new .field.success input,
+.new .field.success textarea,
+.edit .field.success input,
+.edit .field.success textarea {
+  border-color: var(--positive-clr);
+}
+.new .field.success small,
+.edit .field.success small {
+  visibility: visible;
+  color: var(--positive-clr);
+}
+.new .field.success .icon.bass,
+.edit .field.success .icon.bass {
+  visibility: visible;
+  color: var(--positive-clr);
+}
+.new .field.fail input,
+.new .field.fail textarea,
+.edit .field.fail input,
+.edit .field.fail textarea {
+  border-color: var(--negative-clr);
+}
+.new .field.fail small,
+.edit .field.fail small {
+  visibility: visible;
+  color: var(--negative-clr);
+}
+.new .field.fail .icon.error,
+.edit .field.fail .icon.error {
+  visibility: visible;
+  color: var(--negative-clr);
+}
+.new .priceField,
+.edit .priceField {
+  position: relative;
+}
+.new .priceField input,
+.edit .priceField input {
+  padding-left: 30px;
+}
+.new .priceField::before,
+.edit .priceField::before {
+  content: "$";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 11px;
+  top: 26px;
+  z-index: 55;
+  background-color: var(--main-clr);
+  color: var(--secund-clr);
+  width: 25px;
+  height: 40px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+.new .btn,
+.edit .btn {
+  margin-left: auto;
+  margin-top: 20px;
+  margin-right: auto;
+}
+
+@media (min-width: 762px) {
+  .show {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+.show .campground-container {
+  border: 2px solid var(--secund-clr);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin-bottom: 20px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.show .campground-container img {
+  display: block;
+  width: 100%;
+}
+.show .campground-container .text .info {
+  padding: 17px;
+}
+.show .campground-container .text .info .title {
+  margin-bottom: 17px;
+}
+.show .campground-container .text .info p {
+  line-height: 1.6;
+}
+.show .campground-container .text .location,
+.show .campground-container .text .price,
+.show .campground-container .text .author,
+.show .campground-container .text .links {
+  border-style: solid;
+  border-color: var(--secund-clr);
+  border-width: 2px 0 0;
+}
+.show .campground-container .text .location,
+.show .campground-container .text .author,
+.show .campground-container .text .price {
+  padding: 10px 17px;
+}
+.show .campground-container .text .links {
+  display: flex;
+  padding: 17px;
+  gap: 10px;
+}
+.show .campground-container .text .links .btn {
+  margin: 0;
+}
+.show .review-container .add-review .field {
+  padding: initial;
+}
+.show .review-container .reviews .review-box {
+  border: 2px solid var(--secund-clr);
+  padding: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=main.css.map */

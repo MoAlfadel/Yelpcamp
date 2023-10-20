@@ -1,0 +1,39 @@
+@use "../helpers/varibles" as *;
+.campgrounds {
+    .campground-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        @media (min-width: 762px) {
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+        }
+
+        .image {
+            img {
+                display: block;
+                width: 300px;
+            }
+        }
+        .text {
+            padding: 10px;
+            .title {
+                font-size: 1.3rem;
+                padding: 10px 0;
+            }
+            .description {
+                margin-bottom: 10px;
+                color: var(--text-clr);
+                line-height: 1.6;
+            }
+            .location {
+                color: var(--text-clr);
+            }
+        }
+    }
+}

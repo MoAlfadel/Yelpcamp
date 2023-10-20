@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerplate") %>
+<section class="new">
+    <form
+        action="/campgrounds"
+        method="POST"
+        class="form-style"
+        id="form"
+        novalidate
+    >
+        <h2>Add New Campground</h2>
+        <div class="field">
+            <label for="title">title</label>
+            <input id="title" type="text" name="campground[title]" />
+            <i class="fa-regular fa-circle-check bass icon"></i>
+            <i class="fa-regular fa-exclamation-circle error icon"></i>
+            <small> it is look good </small>
+        </div>
+        <div class="field">
+            <label for="location">location</label>
+            <input id="location" type="text" name="campground[location]" />
+            <i class="fa-regular fa-circle-check bass icon"></i>
+            <i class="fa-regular fa-exclamation-circle error icon"></i>
+            <small> error </small>
+        </div>
+        <div class="field">
+            <label for="imgUrl">image</label>
+            <input id="imgUrl" type="text" name="campground[image]" />
+            <i class="fa-regular fa-circle-check bass icon"></i>
+            <i class="fa-regular fa-exclamation-circle error icon"></i>
+            <small> it is look good </small>
+        </div>
+        <div class="field priceField">
+            <label for="price">price</label>
+            <input id="price" type="number" name="campground[price]" />
+            <i class="fa-regular fa-circle-check bass icon"></i>
+            <i class="fa-regular fa-exclamation-circle error icon"></i>
+            <small> it is look good </small>
+        </div>
+        <div class="field">
+            <label for="description">description</label>
+            <textarea
+                id="description"
+                type="text"
+                name="campground[description]"
+                rows="3"
+            ></textarea>
+            <i class="fa-regular fa-circle-check bass icon"></i>
+            <i class="fa-regular fa-exclamation-circle error icon"></i>
+            <small> it is look good </small>
+        </div>
+        <button class="btn">Add Campground</button>
+        <div class="btn">
+            <a href="/campgrounds"> Cancel</a>
+        </div>
+    </form>
+    <script src="/campgrounds/js/formValidation.js"></script>
+</section>

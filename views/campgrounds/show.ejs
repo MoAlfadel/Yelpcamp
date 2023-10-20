@@ -1,0 +1,76 @@
+<% layout("/layouts/boilerplate") %>
+<section class="show">
+    <div class="campground-container">
+        <div class="image">
+            <img src="test-img.jpg" alt="" />
+        </div>
+        <div class="text">
+            <div class="info">
+                <h2 class="title"><%= campground.title %></h2>
+                <p class="description"><%= campground.description %></p>
+            </div>
+            <div class="location"><%= campground.location %></div>
+            <div class="author">
+                Submitted By <%= campground.author.username %>
+            </div>
+            <div class="price">$<%= campground.price %>/night</div>
+            <% if( currentUser && campground.author.id === currentUser.id) {%>
+            <div class="links">
+                <div class="btn positive">
+                    <a href="/campgrounds/<%=campground.id %>/edit">edit</a>
+                </div>
+                <form
+                    action="/campgrounds/<%=campground.id%>?_method=delete"
+                    method="post"
+                >
+                    <button class="btn danger">Delete</button>
+                </form>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="review-container">
+        <form
+            action="/campgrounds/<%=campground.id %>/reviews"
+            method="post"
+            class="form-style add-review"
+        >
+            <h3>leave Review</h3>
+            <div class="field rating">
+                <label for="rating">Rating</label>
+                <input
+                    type="range"
+                    name="review[rating]"
+                    id="rating"
+                    min="0"
+                    max="5"
+                    step="1"
+                />
+            </div>
+            <div class="field">
+                <label for="body">Review</label>
+                <textarea
+                    name="review[body]"
+                    id="body"
+                    cols="30"
+                    rows="3"
+                ></textarea>
+            </div>
+            <button class="btn">add</button>
+        </form>
+        <div class="reviews">
+            <% for (let review of campground.reviews) {%>
+            <div class="review-box">
+                <h4 class="rating">Rating : <%= review.rating %></h4>
+                <p class="body"><%= review.body %></p>
+                <form
+                    action="/campgrounds/<%=campground.id%>/reviews/<%=review.id%>?_method=delete"
+                    method="post"
+                >
+                    <button class="btn danger">Delete</button>
+                </form>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>test</title>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/all.min.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="">
+                <div class="log">
+                    <h1>YelpCamp</h1>
+                </div>
+                <div class="links-container">
+                    <div class="menu" id="menuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="links" id="links">
+                        <li><a href="/">home</a></li>
+                        <li><a href="/campgrounds">campgrounds</a></li>
+                        <li><a href="/campgrounds/new">new campground</a></li>
+                        <li class="login"><a href="/login"> login</a></li>
+                        <li class="login"><a href="/register"> register</a></li>
+                        <!-- <li class="login"><a href="/logout"> logout</a></li> -->
+                        <li class="login logoutBtn">
+                            <form action="/logout" method="post">
+                                <button>Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container">
+            <!-- <section class="campgrounds">
+                <div class="campground-container">
+                    <div class="image">
+                        <img src="port7.jpg" />
+                    </div>
+                    <div class="text">
+                        <h5 class="title">Yalla campground</h5>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Inventore, iste earum cupiditate qui animi
+                            illo. Harum repellendus a nobis quod esse quaerat ad
+                            asperiores quidem quam ab.
+                        </p>
+                        <p class="location">
+                            <small>Omdurman, Suban </small>
+                        </p>
+                        <div class="btn">
+                            <a href="/"> view </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="campground-container">
+                    <div class="image">
+                        <img src="port7.jpg" />
+                    </div>
+                    <div class="text">
+                        <h5 class="title">Yalla campground</h5>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Inventore, iste earum cupiditate qui animi
+                            illo. Harum repellendus a nobis quod esse quaerat ad
+                            asperiores quidem quam ab. Expedita, et ad!
+                        </p>
+                        <p class="location">
+                            <small>Omdurman, Suban </small>
+                        </p>
+                        <div class="btn">
+                            <a href="/"> view </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="campground-container">
+                    <div class="image">
+                        <img src="port7.jpg" />
+                    </div>
+                    <div class="text">
+                        <h5 class="title">Yalla campground</h5>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Inventore, iste earum cupiditate qui animi
+                            illo. Harum repellendus a nobis quod esse quaerat ad
+                            asperiores quidem quam ab. Expedita, et ad!
+                        </p>
+                        <p class="location">
+                            <small>Omdurman, Suban </small>
+                        </p>
+                        <div class="btn">
+                            <a href="/"> view </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="campground-container">
+                    <div class="image">
+                        <img src="port7.jpg" />
+                    </div>
+                    <div class="text">
+                        <h5 class="title">Yalla campground</h5>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Inventore, iste earum cupiditate qui animi
+                            illo. Harum repellendus a nobis quod esse quaerat ad
+                            asperiores quidem quam ab. Expedita, et ad!
+                        </p>
+                        <p class="location">
+                            <small>Omdurman, Suban </small>
+                        </p>
+                        <div class="btn">
+                            <a href="/"> view </a>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- <section class="flash success" id="flash">
+                successfuly doing some
+                <button id="cancelFlash">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </section>
+            <section class="flash error" id="flash">
+                can not doing someting
+                <button id="cancelFlash">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </section> -->
+            <!-- <section class="new">
+                <form action="" method="POST" class="form-style" id="form">
+                    <h2>Add New Campground</h2>
+                    <div class="field success">
+                        <label for="title">title</label>
+                        <input
+                            id="title"
+                            type="text"
+                            name="campground[title]"
+                        />
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <div class="field fail">
+                        <label for="location">location</label>
+                        <input
+                            id="location"
+                            type="text"
+                            name="campground[location]"
+                        />
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> error </small>
+                    </div>
+                    <div class="field">
+                        <label for="imgUrl">image</label>
+                        <input
+                            id="imgUrl"
+                            type="text"
+                            name="campground[image]"
+                        />
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <div class="field priceField">
+                        <label for="price">price</label>
+                        <input
+                            id="location"
+                            type="number"
+                            name="campground[price]"
+                        />
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <div class="field">
+                        <label for="description">description</label>
+                        <textarea
+                            id="description"
+                            type="text"
+                            name="campground[description]"
+                            rows="3"
+                        ></textarea>
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <button class="btn">Add Campground</button>
+                    <div class="btn">
+                        <a href="/campgrounds"> Cancel</a>
+                    </div>
+                </form>
+            </section> -->
+            <!-- <section class="edit">
+                <h2>Edit Campground</h2>
+                <form action="/campgrounds" method="POST" class="form-style">
+                    <div class="field">
+                        <label for="title">title</label>
+                        <input
+                            id="title"
+                            type="text"
+                            name="campground[title]"
+                        />
+                    </div>
+                    <div class="field">
+                        <label for="location">location</label>
+                        <input
+                            id="location"
+                            type="text"
+                            name="campground[location]"
+                        />
+                    </div>
+                    <div class="field">
+                        <label for="imgUrl">image Url</label>
+                        <input
+                            id="imgUrl"
+                            type="text"
+                            name="campground[image]"
+                        />
+                    </div>
+                    <div class="field">
+                        <label for="price">price</label>
+                        <div class="price">
+                            <input
+                                id="location"
+                                type="number"
+                                name="campground[price]"
+                            />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="description">description</label>
+                        <textarea
+                            id="description"
+                            type="text"
+                            name="campground[description]"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <button class="btn">Update Campground</button>
+                    <div class="btn">
+                        <a href="/campgrounds"> Cancel</a>
+                    </div>
+                </form>
+            </section> -->
+            <section class="show">
+                <div class="campground-container">
+                    <div class="image">
+                        <img src="test-img.jpg" alt="" />
+                    </div>
+                    <div class="text">
+                        <div class="info">
+                            <h2 class="title">Campground title</h2>
+                            <p class="description">
+                                Lorem ipsum dolor sit amet consectetur,
+                                adipisicing elit. Molestiae, odit quo earum
+                                blanditiis eos aperiam beatae? Placeat sequi
+                                voluptatem enim at commodi ducimus nobis
+                                praesentium ullam iste. Commodi, rem minima.
+                            </p>
+                        </div>
+                        <div class="location">Omdurman , Sudan</div>
+                        <div class="author">Submitted BY Mo Alfadel</div>
+                        <div class="price">$12/night</div>
+                        <div class="links">
+                            <div class="btn danger">delete</div>
+                            <div class="btn">edit</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-container">
+                    <form action="" class="form-style add-review">
+                        <h3>leave Review</h3>
+                        <div class="field rating">
+                            <label for="rating">Rating</label>
+                            <input
+                                type="range"
+                                name="review[range]"
+                                id="rating"
+                                min="0"
+                                max="5"
+                                step="1"
+                            />
+                        </div>
+                        <div class="field">
+                            <label for="body">Review</label>
+                            <textarea
+                                name="review[body]"
+                                id="body"
+                                cols="30"
+                                rows="3"
+                            ></textarea>
+                        </div>
+                        <button class="btn positive">add</button>
+                    </form>
+                    <div class="reviews">
+                        <div class="review-box">
+                            <h4 class="rating">Rating : 5</h4>
+                            <p class="body">
+                                Review : Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Eligendi, alias!
+                            </p>
+                            <form action="">
+                                <button class="btn danger">Delete</button>
+                            </form>
+                        </div>
+                        <div class="review-box">
+                            <h4 class="rating">Rating : 3</h4>
+                            <p class="body">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Voluptatum exercitationem
+                                soluta doloremque veniam quod. Vitae consequatur
+                                voluptas odit iure tempora!
+                            </p>
+                            <form action="">
+                                <button class="btn danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <span>&COPY; YelpCamp 2023</span>
+        </footer>
+        <script src="js/main.js"></script>
+        <script src="js/all.min.js"></script>
+        <script src="js/formValidation.js"></script>
+    </body>
+</html>

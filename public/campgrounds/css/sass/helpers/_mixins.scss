@@ -1,0 +1,31 @@
+@mixin arrow($arrow-direction, $color, $width) {
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        border: $width solid transparent;
+        @if $arrow-direction == "top" {
+            border-bottom-color: $color;
+            top: -$width * 2;
+            left: 50%;
+            transform: translateX(-50%);
+        } @else if $arrow-direction == "bottom" {
+            border-top-color: $color;
+            bottom: -$width * 2;
+            left: 50%;
+            transform: translateX(-50%);
+        } @else if $arrow-direction == "left" {
+            border-right-color: $color;
+            left: -$width * 2;
+            top: 50%;
+            transform: translateY(-50%);
+        } @else if $arrow-direction == "right" {
+            border-left-color: $color;
+            right: -$width * 2;
+            top: 50%;
+            transform: translateY(-50%);
+        } @else {
+            @error "this direction is not found ";
+        }
+    }
+}

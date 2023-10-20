@@ -1,0 +1,23 @@
+<% layout("/layouts/boilerplate") %>
+<section class="campgrounds">
+    <h2>All campgrounds</h2>
+    <% for (campground of campgrounds ) { %>
+    <div class="campground-container">
+        <div class="image">
+            <img src="<%=campground.image %>" />
+        </div>
+        <div class="text">
+            <h5 class="title"><%= campground.title %></h5>
+            <p class="description"><%- campground.description %></p>
+            <p class="location">
+                <small><%= campground.location %></small>
+            </p>
+            <div class="btn">
+                <a href="/campgrounds/<%=campground.id %>">
+                    View <%= campground.title %></a
+                >
+            </div>
+        </div>
+    </div>
+    <% }%>
+</section>

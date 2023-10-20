@@ -1,0 +1,15 @@
+<% if(success && success.length) {%>
+<section class="flash success" id="flash">
+    <%= success %>
+    <button id="cancelFlash">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</section>
+<% } %> <% if(error && error.length) {%>
+<section class="flash error" id="flash">
+    <%= error %>
+    <button id="cancelFlash">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</section>
+<% } %>
