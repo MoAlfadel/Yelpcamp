@@ -1,56 +1,6 @@
 @use "../helpers/varibles" as *;
 .new,
 .edit {
-    .field {
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-
-        .icon {
-            visibility: hidden;
-            position: absolute;
-            right: 20px;
-            top: 38px;
-        }
-        input,
-        textarea {
-            padding-right: 30px;
-            font-size: 16px;
-        }
-
-        small {
-            visibility: hidden;
-            text-transform: capitalize;
-        }
-        &.success {
-            input,
-            textarea {
-                border-color: var(--positive-clr);
-            }
-            small {
-                visibility: visible;
-                color: var(--positive-clr);
-            }
-            .icon.bass {
-                visibility: visible;
-                color: var(--positive-clr);
-            }
-        }
-        &.fail {
-            input,
-            textarea {
-                border-color: var(--negative-clr);
-            }
-            small {
-                visibility: visible;
-                color: var(--negative-clr);
-            }
-            .icon.error {
-                visibility: visible;
-                color: var(--negative-clr);
-            }
-        }
-    }
     .priceField {
         position: relative;
         input {
@@ -62,20 +12,15 @@
             justify-content: center;
             align-items: center;
             position: absolute;
-            left: 11px;
+            left: 0;
             top: 26px;
             z-index: 55;
             background-color: var(--main-clr);
             color: var(--secund-clr);
             width: 25px;
-            height: 40px;
-            border-top-left-radius: 7px;
-            border-bottom-left-radius: 7px;
+            height: 42px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
         }
-    }
-    .btn {
-        margin-left: auto;
-        margin-top: 20px;
-        margin-right: auto;
     }
 }

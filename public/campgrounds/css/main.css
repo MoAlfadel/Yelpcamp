@@ -15,14 +15,13 @@
 }
 
 body {
-  min-height: 100vh;
   position: relative;
-  padding-bottom: 70px;
 }
 
 .container {
-  padding: 15px;
-  margin: 70px auto;
+  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (min-width: 550px) {
   .container {
@@ -45,12 +44,19 @@ body {
   }
 }
 
+main.container {
+  padding: 15px 15px 70px;
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
+}
+
 header nav {
-  background-color: var(--main-clr);
-  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 30px;
+  background-color: var(--main-clr);
+  padding: 0 20px;
   color: var(--secund-clr);
   position: fixed;
   z-index: 343434;
@@ -59,6 +65,16 @@ header nav {
   height: 70px;
   width: 100%;
   text-transform: capitalize;
+}
+@media (min-width: 750px) {
+  header nav {
+    justify-content: start;
+  }
+}
+@media (min-width: 767px) {
+  header nav .links-container {
+    width: 100%;
+  }
 }
 header nav .links-container .menu {
   display: flex;
@@ -69,7 +85,7 @@ header nav .links-container .menu {
   cursor: pointer;
   position: relative;
 }
-@media (min-width: 750px) {
+@media (min-width: 767px) {
   header nav .links-container .menu {
     display: none;
   }
@@ -101,16 +117,23 @@ header nav .links-container .links {
   top: 70px;
   list-style-type: none;
   z-index: 8888;
-  background-color: var(--main-clr);
   transition: left 0.4s ease-in-out;
-  left: -100vw;
+  left: -200vh;
+  background-color: var(--main-clr);
 }
-@media (min-width: 750px) {
+header nav .links-container .links.active {
+  left: 0;
+}
+@media (min-width: 787px) {
   header nav .links-container .links {
     display: flex;
+    justify-content: space-between;
     position: relative;
     top: 0;
     left: 0;
+  }
+  header nav .links-container .links > div {
+    display: flex;
   }
 }
 header nav .links-container .links li {
@@ -118,42 +141,33 @@ header nav .links-container .links li {
 }
 header nav .links-container .links li a {
   text-decoration: none;
-  color: var(--secund-clr);
+  color: inherit;
   transition: opacity 0.4s linear;
 }
 header nav .links-container .links li a:hover {
   opacity: 0.8;
 }
-header nav .links-container .links.active {
-  left: 0;
-}
-header nav .links-container .links li.logoutBtn {
-  color: var(--secund-clr);
-}
 header nav .links-container .links li.logoutBtn button {
-  cursor: pointer;
   background-color: transparent;
-  border: none;
   color: inherit;
-  transition: opacity 0.4s linear;
-}
-header nav .links-container .links li.logoutBtn button:hover {
-  opacity: 0.8;
+  border: none;
+  cursor: pointer;
 }
 
 .btn {
   margin: 10px 0;
-  color: var(--main-clr);
-  background-color: var(--third-clr);
+  background-color: var(--text-clr);
+  color: var(--secund-clr);
   width: -moz-fit-content;
   width: fit-content;
-  padding: 5px 10px;
+  padding: 8px 10px;
   border-radius: 5px;
   display: block;
   cursor: pointer;
   font-weight: bold;
   border: none;
   text-transform: capitalize;
+  transition: 0.4s ease-in-out;
 }
 .btn.danger {
   background-color: var(--negative-clr);
@@ -166,6 +180,27 @@ header nav .links-container .links li.logoutBtn button:hover {
 .btn a {
   text-decoration: none;
   color: inherit;
+}
+
+.btn-states {
+  transition: 0.4s ease-in-out;
+}
+.btn-states:hover {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+.btn-states:active {
+  background-color: var(--third-clr);
+  color: var(--main-clr);
+}
+.btn-states:focus {
+  outline: none;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
+}
+.btn-states:disabled {
+  filter: grayscale(100%);
+  background-color: #ebebeb;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
 }
 
 .flash {
@@ -201,25 +236,24 @@ header nav .links-container .links li.logoutBtn button:hover {
 }
 
 footer {
+  height: 90px;
   background-color: var(--main-clr);
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 20px 0;
   color: var(--secund-clr);
-  margin-top: auto;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  line-height: 1.6;
 }
-
-.form-style h2 {
+footer div {
   text-align: center;
 }
+
+.form-style {
+  padding: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
 .form-style .field {
-  padding: 0 10px;
-  max-width: 650px;
-  margin: 15px 0;
+  margin: 15px auto;
+  position: relative;
 }
 .form-style .field label {
   display: block;
@@ -227,21 +261,65 @@ footer {
 }
 .form-style .field input,
 .form-style .field textarea {
-  margin-top: 7px;
   display: block;
+  font-size: 16px;
+  margin-top: 7px;
   width: 100%;
-  padding: 7px 10px;
-  border: none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 30px;
+  padding-left: 13px;
   background-color: var(--secund-clr);
   transition: 0.4s ease-in-out;
   border: 2px solid transparent;
-  border-radius: 7px;
+  border-radius: 20px;
   line-height: 1.6;
 }
 .form-style .field input:focus,
 .form-style .field textarea:focus {
   outline: none;
-  border: 2px solid var(--main-clr);
+  border: 2px solid var(--text-clr);
+}
+.form-style .field .icon {
+  visibility: hidden;
+  position: absolute;
+  right: 13px;
+  top: 38px;
+}
+.form-style .field small {
+  visibility: hidden;
+  text-transform: capitalize;
+}
+.form-style .field.success input,
+.form-style .field.success textarea {
+  border-color: var(--positive-clr);
+}
+.form-style .field.success small {
+  visibility: visible;
+  color: var(--positive-clr);
+}
+.form-style .field.success .icon.bass {
+  visibility: visible;
+  color: var(--positive-clr);
+}
+.form-style .field.fail input,
+.form-style .field.fail textarea {
+  border-color: var(--negative-clr);
+}
+.form-style .field.fail small {
+  visibility: visible;
+  color: var(--negative-clr);
+}
+.form-style .field.fail .icon.error {
+  visibility: visible;
+  color: var(--negative-clr);
+}
+.form-style .btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-style h2 {
+  text-align: center;
 }
 
 /* ! end global */
@@ -251,10 +329,10 @@ footer {
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 300px;
+  width: auto;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-@media (min-width: 762px) {
+@media (min-width: 767px) {
   .campgrounds .campground-container {
     flex-direction: row;
     align-items: center;
@@ -263,7 +341,7 @@ footer {
 }
 .campgrounds .campground-container .image img {
   display: block;
-  width: 300px;
+  width: 100%;
 }
 .campgrounds .campground-container .text {
   padding: 10px;
@@ -281,63 +359,6 @@ footer {
   color: var(--text-clr);
 }
 
-.new .field,
-.edit .field {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-}
-.new .field .icon,
-.edit .field .icon {
-  visibility: hidden;
-  position: absolute;
-  right: 20px;
-  top: 38px;
-}
-.new .field input,
-.new .field textarea,
-.edit .field input,
-.edit .field textarea {
-  padding-right: 30px;
-  font-size: 16px;
-}
-.new .field small,
-.edit .field small {
-  visibility: hidden;
-  text-transform: capitalize;
-}
-.new .field.success input,
-.new .field.success textarea,
-.edit .field.success input,
-.edit .field.success textarea {
-  border-color: var(--positive-clr);
-}
-.new .field.success small,
-.edit .field.success small {
-  visibility: visible;
-  color: var(--positive-clr);
-}
-.new .field.success .icon.bass,
-.edit .field.success .icon.bass {
-  visibility: visible;
-  color: var(--positive-clr);
-}
-.new .field.fail input,
-.new .field.fail textarea,
-.edit .field.fail input,
-.edit .field.fail textarea {
-  border-color: var(--negative-clr);
-}
-.new .field.fail small,
-.edit .field.fail small {
-  visibility: visible;
-  color: var(--negative-clr);
-}
-.new .field.fail .icon.error,
-.edit .field.fail .icon.error {
-  visibility: visible;
-  color: var(--negative-clr);
-}
 .new .priceField,
 .edit .priceField {
   position: relative;
@@ -353,21 +374,15 @@ footer {
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 11px;
+  left: 0;
   top: 26px;
   z-index: 55;
   background-color: var(--main-clr);
   color: var(--secund-clr);
   width: 25px;
-  height: 40px;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
-}
-.new .btn,
-.edit .btn {
-  margin-left: auto;
-  margin-top: 20px;
-  margin-right: auto;
+  height: 42px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 @media (min-width: 762px) {
@@ -427,4 +442,119 @@ footer {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   line-height: 1.6;
   margin-bottom: 10px;
+}
+
+.sign .or {
+  text-align: center;
+  margin: 10px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sign .or .text {
+  background-color: var(--third-clr);
+  color: var(--main-clr);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16;
+}
+.sign .or::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  background-color: var(--third-clr);
+  z-index: -1;
+}
+.sign .btn.sign {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 20px;
+}
+.sign .login-with-google-btn {
+  cursor: pointer;
+  display: block;
+  border: none;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+  margin: 20px auto;
+  font-size: 14px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 12px 11px;
+  padding: 12px 16px 12px 42px;
+  border-radius: 20px;
+  color: var(--text-clr);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.sign .login-with-google-btn a {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+.sign .login-with-google-btn:hover {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+.sign .login-with-google-btn:active {
+  background-color: #eee;
+}
+.sign .login-with-google-btn:focus {
+  outline: none;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
+}
+.sign .login-with-google-btn:disabled {
+  filter: grayscale(100%);
+  background-color: #ebebeb;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+}
+
+.home-page {
+  height: 100vh;
+  background-color: var(--text-clr);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+  background-size: cover;
+  line-height: 1.9;
+}
+.home-page nav.container {
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--secund-clr);
+  background-color: transparent;
+}
+.home-page nav.container .links {
+  background-color: transparent;
+}
+@media (max-width: 750px) {
+  .home-page nav.container .links {
+    background-color: rgba(125, 124, 124, 0.6);
+  }
+}
+.home-page main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  color: var(--secund-clr);
+}
+.home-page main .box .btn {
+  background-color: var(--secund-clr);
+  color: var(--text-clr);
+  margin: 10px auto;
+}
+.home-page footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
 }/*# sourceMappingURL=main.css.map */

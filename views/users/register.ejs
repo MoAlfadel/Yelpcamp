@@ -1,6 +1,5 @@
 <% layout("/layouts/boilerplate") %>
-
-<section class="new">
+<section class="sign">
     <form
         action="/register"
         method="POST"
@@ -30,11 +29,11 @@
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> it is look good </small>
         </div>
-        <button class="btn">Sign Up</button>
+        <button class="btn sign btn-states">Sign Up</button>
     </form>
-    <div class="btn google"><a href="/google"> Sign up with Google </a></div>
-    <div class="btn">
-        <a href="/campgrounds"> Cancel</a>
-    </div>
+    <div class="or"><div class="text">or</div></div>
+    <button type="button" class="login-with-google-btn">
+        <a href="/google"> Sign Up with Google </a>
+    </button>
     <script src="/campgrounds/js/formValidation.js"></script>
 </section>

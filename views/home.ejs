@@ -3,9 +3,58 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <link rel="stylesheet" href="/campgrounds/css/main.css" />
+        <link rel="stylesheet" href="css/all.min.css" />
+        <title>YelpCamp</title>
     </head>
-    <body>
-        <h1>Hell YelpCamp , iam the home page</h1>
+    <body class="home-page">
+        <header>
+            <nav class="container">
+                <div class="log">
+                    <h1>YelpCamp</h1>
+                </div>
+                <div class="links-container">
+                    <div class="menu" id="menuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="links" id="links">
+                        <div></div>
+                        <div>
+                            <li><a class="active" href="/">home</a></li>
+                            <li><a href="/campgrounds">campgrounds</a></li>
+                            <% if(!currentUser) {%>
+                            <li class="login"><a href="/login"> login</a></li>
+                            <li class="login">
+                                <a href="/register"> register</a>
+                            </li>
+                            <% } else { %>
+                            <li class="login logoutBtn">
+                                <form action="/logout" method="post">
+                                    <button>Logout</button>
+                                </form>
+                            </li>
+                            <% } %>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="box container">
+                <h2>YelpCamp</h2>
+                <h3>Welcome To YelpCamp !</h3>
+                <p class="lead">
+                    Jump right in and explore our many campgrounds. <br />
+                    Feel free to share some of your own and comment on others!
+                </p>
+                <button class="btn">
+                    <a href="/campgrounds"> view campgrounds</a>
+                </button>
+            </div>
+        </main>
+        <%- include("./partials/footer") %>
+        <script src="/campgrounds/js/main.js"></script>
     </body>
 </html>

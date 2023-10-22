@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>test</title>
         <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/all.min.css" />
+        <!-- <link rel="stylesheet" href="css/all.min.css" /> -->
     </head>
-    <body>
-        <header>
+    <body class="home-page">
+        <!-- <header>
             <nav class="">
                 <div class="log">
                     <h1>YelpCamp</h1>
@@ -25,7 +25,7 @@
                         <li><a href="/campgrounds/new">new campground</a></li>
                         <li class="login"><a href="/login"> login</a></li>
                         <li class="login"><a href="/register"> register</a></li>
-                        <!-- <li class="login"><a href="/logout"> logout</a></li> -->
+                        <li class="login"><a href="/logout"> logout</a></li>
                         <li class="login logoutBtn">
                             <form action="/logout" method="post">
                                 <button>Logout</button>
@@ -34,10 +34,47 @@
                     </ul>
                 </div>
             </nav>
-        </header>
+        </header> -->
+        <header>
+            <nav class="container">
+                <div class="log">
+                    <h1>YelpCamp</h1>
+                </div>
+                <div class="links-container">
+                    <div class="menu" id="menuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="links" id="links">
+                        <div></div>
+                        <div>
+                            <li><a href="/">home</a></li>
+                            <li><a href="/campgrounds">campgrounds</a></li>
 
-        <main class="container">
-            <!-- <section class="campgrounds">
+                            <li class="login"><a href="/login"> login</a></li>
+                            <li class="login">
+                                <a href="/register"> register</a>
+                            </li>
+                            <li class="login"><a href="/logout"> logout</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="box container">
+                <h2>YelpCamp</h2>
+                <h3>Welcome To YelpCamp !</h3>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Amet inventore placeat accusamus.
+                </p>
+                <button class="btn">View Campgrounds</button>
+            </div>
+        </main>
+        <!-- <main class="container"> -->
+        <!-- <section class="campgrounds">
                 <div class="campground-container">
                     <div class="image">
                         <img src="port7.jpg" />
@@ -119,7 +156,7 @@
                     </div>
                 </div>
             </section> -->
-            <!-- <section class="flash success" id="flash">
+        <!-- <section class="flash success" id="flash">
                 successfuly doing some
                 <button id="cancelFlash">
                     <i class="fa-solid fa-xmark"></i>
@@ -131,7 +168,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </section> -->
-            <!-- <section class="new">
+        <!-- <section class="new">
                 <form action="" method="POST" class="form-style" id="form">
                     <h2>Add New Campground</h2>
                     <div class="field success">
@@ -201,12 +238,9 @@
                         <small> it is look good </small>
                     </div>
                     <button class="btn">Add Campground</button>
-                    <div class="btn">
-                        <a href="/campgrounds"> Cancel</a>
-                    </div>
                 </form>
             </section> -->
-            <!-- <section class="edit">
+        <!-- <section class="edit">
                 <h2>Edit Campground</h2>
                 <form action="/campgrounds" method="POST" class="form-style">
                     <div class="field">
@@ -258,7 +292,7 @@
                     </div>
                 </form>
             </section> -->
-            <section class="show">
+        <!-- <section class="show">
                 <div class="campground-container">
                     <div class="image">
                         <img src="test-img.jpg" alt="" />
@@ -333,10 +367,56 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
+            </section> -->
+        <!-- <section class="sign">
+                <form
+                    action="/login"
+                    method="POST"
+                    class="form-style"
+                    id="form"
+                    novalidate
+                >
+                    <h2>login</h2>
+                    <div class="field">
+                        <label for="username">username</label>
+                        <input
+                            id="username"
+                            type="text"
+                            name="username"
+                            placeholder="username"
+                        />
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                        />
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <button class="btn sign btn-states">login</button>
+                </form>
+                <div class="or"><div class="text">or</div></div>
+                <button type="button" class="login-with-google-btn btn-states">
+                    <a href="/google"> Sign in with Google </a>
+                </button>
+                <script src="/campgrounds/js/formValidation.js"></script>
+            </section> -->
+        <!-- </main> -->
         <footer>
-            <span>&COPY; YelpCamp 2023</span>
+            <div>Made With <span>&#10084;</span> By Mo Alfadel</div>
+            <div>&COPY; YelpCamp 2023</div>
         </footer>
         <script src="js/main.js"></script>
         <script src="js/all.min.js"></script>

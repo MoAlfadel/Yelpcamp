@@ -10,8 +10,6 @@
         box-shadow: $shadow;
         margin-bottom: calc($main-gap * 2);
         height: fit-content;
-        @media (min-width: 762px) {
-        }
 
         img {
             display: block;

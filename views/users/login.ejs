@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 
-<section class="new">
+<section class="sign">
     <form action="/login" method="POST" class="form-style" id="form" novalidate>
         <h2>login</h2>
         <div class="field">
@@ -17,11 +17,11 @@
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> it is look good </small>
         </div>
-        <button class="btn">login</button>
-        <div class="btn">
-            <a href="/campgrounds"> Cancel</a>
-        </div>
+        <button class="btn sign btn-states">login</button>
     </form>
-    <div class="btn google"><a href="/google"> Sign in with Google </a></div>
+    <div class="or"><div class="text">or</div></div>
+    <button type="button" class="login-with-google-btn">
+        <a href="/google"> Sign in with Google </a>
+    </button>
     <script src="/campgrounds/js/formValidation.js"></script>
 </section>

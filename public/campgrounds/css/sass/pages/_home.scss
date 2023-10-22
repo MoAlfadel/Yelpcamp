@@ -1,0 +1,46 @@
+@use "../helpers/varibles" as *;
+
+.home-page {
+    height: 100vh;
+    background-color: var(--text-clr);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    background-size: cover;
+    line-height: 1.9;
+    nav.container {
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--secund-clr);
+        background-color: transparent;
+        .links {
+            background-color: transparent;
+            @media (max-width: 750px) {
+                background-color: rgba(125, 124, 124, 0.6);
+            }
+        }
+    }
+
+    main {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        color: var(--secund-clr);
+        .box {
+            .btn {
+                background-color: var(--secund-clr);
+                color: var(--text-clr);
+                margin: 10px auto;
+            }
+        }
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+    }
+}

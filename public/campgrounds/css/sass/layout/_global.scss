@@ -7,13 +7,12 @@
     padding: 0;
 }
 body {
-    min-height: 100vh;
     position: relative;
-    padding-bottom: 70px;
 }
 .container {
-    padding: 15px;
-    margin: 70px auto;
+    padding: 0 15px;
+    margin-left: auto;
+    margin-right: auto;
     @media (min-width: 550px) {
         width: 520px;
     }
@@ -27,13 +26,19 @@ body {
         width: 1170px;
     }
 }
+main.container {
+    padding: 15px 15px 70px;
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+}
 header {
     nav {
-        background-color: var(--main-clr);
-        padding: 0 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 30px;
+        background-color: var(--main-clr);
+        padding: 0 20px;
         color: var(--secund-clr);
         position: fixed;
         z-index: 343434;
@@ -42,9 +47,16 @@ header {
         height: 70px;
         width: 100%;
         text-transform: capitalize;
+        @media (min-width: 750px) {
+            justify-content: start;
+        }
         .logo {
         }
         .links-container {
+            @media (min-width: 767px) {
+                width: 100%;
+            }
+
             .menu {
                 display: flex;
                 flex-direction: column;
@@ -53,7 +65,7 @@ header {
                 gap: 4px;
                 cursor: pointer;
                 position: relative;
-                @media (min-width: 750px) {
+                @media (min-width: 767px) {
                     display: none;
                 }
                 span {
@@ -86,39 +98,38 @@ header {
                 top: 70px;
                 list-style-type: none;
                 z-index: 8888;
-                background-color: var(--main-clr);
                 transition: left 0.4s ease-in-out;
-                left: -100vw;
-                @media (min-width: 750px) {
+                left: -200vh;
+                background-color: var(--main-clr);
+                &.active {
+                    left: 0;
+                }
+                @media (min-width: 787px) {
                     display: flex;
+                    justify-content: space-between;
                     position: relative;
                     top: 0;
                     left: 0;
+                    > div {
+                        display: flex;
+                    }
                 }
                 li {
                     padding: 10px 20px;
                     a {
                         text-decoration: none;
-                        color: var(--secund-clr);
+                        color: inherit;
                         transition: opacity 0.4s linear;
                         &:hover {
                             opacity: 0.8;
                         }
                     }
-                }
-                &.active {
-                    left: 0;
-                }
-                li.logoutBtn {
-                    color: var(--secund-clr);
-                    button {
-                        cursor: pointer;
-                        background-color: transparent;
-                        border: none;
-                        color: inherit;
-                        transition: opacity 0.4s linear;
-                        &:hover {
-                            opacity: 0.8;
+                    &.logoutBtn {
+                        button {
+                            background-color: transparent;
+                            color: inherit;
+                            border: none;
+                            cursor: pointer;
                         }
                     }
                 }
@@ -129,16 +140,18 @@ header {
 
 .btn {
     margin: 10px 0;
-    color: var(--main-clr);
-    background-color: var(--third-clr);
+    background-color: var(--text-clr);
+    color: var(--secund-clr);
     width: fit-content;
-    padding: 5px 10px;
+    padding: 8px 10px;
     border-radius: 5px;
     display: block;
     cursor: pointer;
     font-weight: bold;
     border: none;
     text-transform: capitalize;
+    transition: 0.4s ease-in-out;
+    // ----------------------------------
     &.danger {
         background-color: var(--negative-clr);
         color: var(--secund-clr);
@@ -147,9 +160,33 @@ header {
         background-color: var(--positive-clr);
         color: var(--secund-clr);
     }
+
     a {
         text-decoration: none;
         color: inherit;
+    }
+}
+.btn-states {
+    transition: 0.4s ease-in-out;
+    &:hover {
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+        background-color: var(--third-clr);
+        color: var(--main-clr);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+            0 0 0 3px #c8dafc;
+    }
+    &:disabled {
+        filter: grayscale(100%);
+        background-color: #ebebeb;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+        cursor: not-allowed;
     }
 }
 .flash {
@@ -185,46 +222,93 @@ header {
     }
 }
 footer {
+    height: 90px;
     background-color: var(--main-clr);
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 20px 0;
     color: var(--secund-clr);
-    margin-top: auto;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-.form-style {
-    h2 {
+    line-height: 1.6;
+    div {
         text-align: center;
     }
+}
+.form-style {
+    padding: 10px;
+    max-width: 500px;
+    margin: 0 auto;
     .field {
-        padding: 0 10px;
-        max-width: 650px;
-        margin: 15px 0;
+        margin: 15px auto;
+        position: relative;
         label {
             display: block;
             text-transform: capitalize;
         }
         input,
         textarea {
-            margin-top: 7px;
             display: block;
+            font-size: 16px;
+            margin-top: 7px;
             width: 100%;
-            padding: 7px 10px;
-            border: none;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            padding-right: 30px;
+            padding-left: 13px;
             background-color: var(--secund-clr);
             transition: 0.4s ease-in-out;
             border: 2px solid transparent;
-            border-radius: 7px;
+            border-radius: 20px;
             line-height: 1.6;
             &:focus {
                 outline: none;
-                border: 2px solid var(--main-clr);
+                border: 2px solid var(--text-clr);
             }
         }
+        .icon {
+            visibility: hidden;
+            position: absolute;
+            right: 13px;
+            top: 38px;
+        }
+
+        small {
+            visibility: hidden;
+            text-transform: capitalize;
+        }
+
+        &.success {
+            input,
+            textarea {
+                border-color: var(--positive-clr);
+            }
+            small {
+                visibility: visible;
+                color: var(--positive-clr);
+            }
+            .icon.bass {
+                visibility: visible;
+                color: var(--positive-clr);
+            }
+        }
+        &.fail {
+            input,
+            textarea {
+                border-color: var(--negative-clr);
+            }
+            small {
+                visibility: visible;
+                color: var(--negative-clr);
+            }
+            .icon.error {
+                visibility: visible;
+                color: var(--negative-clr);
+            }
+        }
+    }
+    .btn {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h2 {
+        text-align: center;
     }
 }
 

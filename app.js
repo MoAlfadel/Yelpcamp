@@ -17,6 +17,7 @@ const reviewsRoutes = require("./routes/reviews");
 const usersRoutes = require("./routes/users");
 const GoogleStrategy = require("passport-google-oauth20");
 let accountType = null;
+const keys = require("./keys");
 mongoose
     .connect("mongodb://127.0.0.1:27017/yelp-testing")
     .then(() => console.log(">>> Mongodb connection open !!! "))
@@ -24,7 +25,7 @@ mongoose
         console.log(">>> MOngodb connection error !!! ");
         console.log(error);
     });
-const keys = require("./keys");
+
 // set the views
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
