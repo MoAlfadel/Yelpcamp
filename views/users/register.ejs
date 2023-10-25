@@ -1,5 +1,9 @@
 <% layout("/layouts/boilerplate") %>
-<section class="sign">
+<section class="sign register">
+    <h2 class="section-title">
+        Register
+        <div class="shadow">Sign up</div>
+    </h2>
     <form
         action="/register"
         method="POST"
@@ -7,10 +11,10 @@
         id="form"
         novalidate
     >
-        <h2>Sign Up</h2>
         <div class="field">
             <label for="username">username</label>
             <input id="username" type="text" name="username" />
+            <i class="info fa-solid fa-user"></i>
             <i class="fa-regular fa-circle-check bass icon"></i>
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> it is look good </small>
@@ -18,13 +22,23 @@
         <div class="field">
             <label for="email">Email</label>
             <input id="email" type="text" name="email" />
+            <i class="info fa-solid fa-envelope"></i>
             <i class="fa-regular fa-circle-check bass icon"></i>
             <i class="fa-regular fa-exclamation-circle error icon"></i>
-            <small> error </small>
+            <small> it is look good </small>
         </div>
-        <div class="field">
+        <div class="field password">
             <label for="password">Password</label>
             <input id="password" type="password" name="password" />
+            <i class="info fa-solid fa-lock"></i>
+            <i class="fa-regular fa-circle-check bass icon"></i>
+            <i class="fa-regular fa-exclamation-circle error icon"></i>
+            <small> it is look good </small>
+        </div>
+        <div class="field password-check">
+            <label for="password-check">Confirm Password</label>
+            <input id="password-check" type="password" name="password-check" />
+            <i class="info fa-solid fa-lock"></i>
             <i class="fa-regular fa-circle-check bass icon"></i>
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> it is look good </small>
@@ -35,5 +49,9 @@
     <button type="button" class="login-with-google-btn">
         <a href="/google"> Sign Up with Google </a>
     </button>
+    <div class="sign-up">
+        <div class="div">Already have an account?</div>
+        <a href="/login">Login</a>
+    </div>
     <script src="/campgrounds/js/formValidation.js"></script>
 </section>

@@ -1,13 +1,14 @@
 <% layout("/layouts/boilerplate") %>
 <section class="edit">
+    <h2 class="section-title">Edit Campground</h2>
     <form
         action="/campgrounds/<%=campground.id%>?_method=put"
         method="POST"
         class="form-style"
         id="form"
         novalidate
+        enctype="multipart/form-data"
     >
-        <h2>Edit Campground</h2>
         <div class="field">
             <label for="title">title</label>
             <input
@@ -32,17 +33,18 @@
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> error </small>
         </div>
-        <div class="field">
-            <label for="imgUrl">image</label>
-            <input
-                id="imgUrl"
-                type="text"
-                name="campground[image]"
-                value="<%= campground.image %>"
-            />
-            <i class="fa-regular fa-circle-check bass icon"></i>
-            <i class="fa-regular fa-exclamation-circle error icon"></i>
-            <small> it is look good </small>
+        <div class="file-upload">
+            <label for="file-upload-input"> images</label>
+            <div class="file-upload-select" id="file-select">
+                <div class="file-select-button">Choose Image(s)...</div>
+                <div class="file-select-name">No file chosen...</div>
+                <input
+                    type="file"
+                    name="campground-img"
+                    id="file-upload-input"
+                    multiple
+                />
+            </div>
         </div>
         <div class="field priceField">
             <label for="price">price</label>
@@ -71,10 +73,24 @@
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> it is look good </small>
         </div>
-        <button class="btn">Update Campground</button>
-        <div class="btn">
-            <a href="/campgrounds"> Cancel</a>
+        <div class="images">
+            <% campground.image.forEach( (img , i)=> {%>
+            <div class="image">
+                <img src="<%=img.thumbnail%>" alt="" />
+                <div class="delete">
+                    <input
+                        type="checkbox"
+                        name="deletedImages[]"
+                        value="<%=img.fileName %>"
+                        id="image-<%=i%>"
+                    />
+                    <label for="image-<%=i%>">Delete ? </label>
+                </div>
+            </div>
+            <% }) %>
         </div>
+        <button class="btn btn-states">Update Campground</button>
     </form>
+
     <script src="/campgrounds/js/formValidation.js"></script>
 </section>

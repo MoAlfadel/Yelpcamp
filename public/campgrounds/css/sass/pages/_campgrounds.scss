@@ -8,30 +8,29 @@
         margin-right: auto;
         width: auto;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        // @media (min-width: ) {
-        //     width: 100%;
-        // }
+        @media (min-width: 420px) {
+            width: 400px;
+        }
         @media (min-width: 767px) {
             flex-direction: row;
             align-items: center;
             width: 100%;
         }
-
+        // remove this
+        .slider,
         .image {
             img {
                 display: block;
-                // width: 300px;
                 width: 100%;
-                // @media (min-width: 750px) {
-                //     width: 300px;
-                // }
+                height: 225px;
             }
         }
         .text {
             padding: 10px;
             .title {
-                font-size: 1.3rem;
+                // font-size: 1.3rem;
                 padding: 10px 0;
+                color: var(--third-text-clr);
             }
             .description {
                 margin-bottom: 10px;
@@ -39,7 +38,7 @@
                 line-height: 1.6;
             }
             .location {
-                color: var(--text-clr);
+                color: var(--secund-text-clr);
             }
         }
     }

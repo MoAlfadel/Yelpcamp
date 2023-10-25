@@ -8,6 +8,8 @@
 }
 body {
     position: relative;
+    font-family: "Roboto", sans-serif;
+    color: var(--secund-text-clr);
 }
 .container {
     padding: 0 15px;
@@ -25,11 +27,32 @@ body {
     @media (min-width: 1200) {
         width: 1170px;
     }
+    @media (min-width: 1400) {
+        width: 1320px;
+    }
 }
 main.container {
     padding: 15px 15px 70px;
     margin-top: 70px;
     min-height: calc(100vh - 70px);
+    .section-title {
+        color: var(--main-clr);
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        position: relative;
+        .shadow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -25px;
+            color: var(--secund-clr);
+            font-size: 4rem;
+            z-index: -1;
+            word-spacing: -10px;
+            line-height: 0.7;
+        }
+    }
 }
 header {
     nav {
@@ -47,7 +70,7 @@ header {
         height: 70px;
         width: 100%;
         text-transform: capitalize;
-        @media (min-width: 750px) {
+        @media (min-width: 767px) {
             justify-content: start;
         }
         .logo {
@@ -104,7 +127,7 @@ header {
                 &.active {
                     left: 0;
                 }
-                @media (min-width: 787px) {
+                @media (min-width: 767px) {
                     display: flex;
                     justify-content: space-between;
                     position: relative;
@@ -120,7 +143,8 @@ header {
                         text-decoration: none;
                         color: inherit;
                         transition: opacity 0.4s linear;
-                        &:hover {
+                        &:hover,
+                        &.active {
                             opacity: 0.8;
                         }
                     }
@@ -151,6 +175,8 @@ header {
     border: none;
     text-transform: capitalize;
     transition: 0.4s ease-in-out;
+    font-weight: initial;
+    font-size: 1rem;
     // ----------------------------------
     &.danger {
         background-color: var(--negative-clr);
@@ -164,6 +190,8 @@ header {
     a {
         text-decoration: none;
         color: inherit;
+        font-weight: initial;
+        font-size: inherit;
     }
 }
 .btn-states {
@@ -191,8 +219,8 @@ header {
 }
 .flash {
     padding: 20px;
-    margin-bottom: 15px;
-    color: var(--text-clr);
+    margin-bottom: 50px;
+    color: var(--main-clr);
     position: relative;
     text-transform: capitalize;
     &.success {
@@ -223,7 +251,7 @@ header {
 }
 footer {
     height: 90px;
-    background-color: var(--main-clr);
+    background-color: var(--text-clr);
     padding: 20px 0;
     color: var(--secund-clr);
     line-height: 1.6;
@@ -232,21 +260,22 @@ footer {
     }
 }
 .form-style {
-    padding: 10px;
-    max-width: 500px;
+    padding: 10px 5px;
     margin: 0 auto;
+
     .field {
         margin: 15px auto;
         position: relative;
+        max-width: 450px;
         label {
             display: block;
             text-transform: capitalize;
+            margin-bottom: 7px;
         }
         input,
         textarea {
             display: block;
             font-size: 16px;
-            margin-top: 7px;
             width: 100%;
             padding-top: 7px;
             padding-bottom: 7px;
@@ -303,12 +332,92 @@ footer {
             }
         }
     }
+    .file-upload {
+        margin: 15px auto 30px;
+        max-width: 450px;
+        label {
+            margin-bottom: 7px;
+            display: block;
+        }
+        .file-upload-select {
+            display: block;
+            cursor: pointer;
+            text-align: left;
+            background-color: var(--secund-clr);
+            overflow: hidden;
+            color: var(--text-clr);
+            border-radius: 30px;
+            position: relative;
+
+            .file-select-button {
+                background: var(--third-clr);
+                color: var(--main-clr);
+                padding: 12px;
+                display: inline-block;
+            }
+            .file-select-name {
+                display: inline-block;
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+            &:hover .file-select-button {
+                background: var(--text-clr);
+                color: var(--secund-clr);
+                transition: all 0.2s ease-in-out;
+                -moz-transition: all 0.2s ease-in-out;
+                -webkit-transition: all 0.2s ease-in-out;
+                -o-transition: all 0.2s ease-in-out;
+            }
+            input[type="file"] {
+                display: none;
+            }
+        }
+    }
     .btn {
         margin-left: auto;
         margin-right: auto;
     }
-    h2 {
-        text-align: center;
+}
+.slider {
+    width: 100%;
+    height: 225px;
+    position: relative;
+    overflow: hidden; /* <===  */
+    // border-radius: 15px;
+    .slide {
+        width: 100%;
+        max-width: 800px;
+        position: absolute;
+        transition: all 0.5s;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .slider-btn {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        border: none;
+        border-radius: 50%;
+        z-index: 10px;
+        cursor: pointer;
+        background-color: transparent;
+        color: var(--secund-clr);
+        font-size: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        &:active {
+            transform: translateY(-50%) scale(1.1);
+        }
+        &.btn-prev {
+            left: 2%;
+        }
+        &.btn-next {
+            right: 2%;
+        }
     }
 }
 

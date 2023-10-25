@@ -3,8 +3,22 @@
 
 <section class="show">
     <div class="campground-container">
-        <div class="image">
-            <img src="test-img.jpg" alt="" />
+        <!-- Slider container -->
+        <div class="slider">
+            <% for ( let img of campground.image) { %>
+            <div class="slide">
+                <img src="<%= img.url %>" alt="" />
+            </div>
+            <% } %>
+            <!-- Control buttons -->
+            <% if(campground.image.length > 1 ){ %>
+            <button class="slider-btn btn-next">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+            <button class="slider-btn btn-prev">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <% } %>
         </div>
         <div class="text">
             <div class="info">
@@ -18,14 +32,14 @@
             <div class="price">$<%= campground.price %>/night</div>
             <% if( currentUser && campground.author.id === currentUser.id) {%>
             <div class="links">
-                <div class="btn positive">
+                <div class="btn btn-states">
                     <a href="/campgrounds/<%=campground.id %>/edit">edit</a>
                 </div>
                 <form
                     action="/campgrounds/<%=campground.id%>?_method=delete"
                     method="post"
                 >
-                    <button class="btn danger">Delete</button>
+                    <button class="btn danger btn-states">Delete</button>
                 </form>
             </div>
             <% } %>
@@ -37,8 +51,13 @@
             action="/campgrounds/<%=campground.id %>/reviews"
             method="post"
             class="form-style add-review"
+            novalidate
+            id="form"
         >
-            <h3>leave Review</h3>
+            <h3 class="section-title">
+                Leave Review
+                <div class="shadow">interact</div>
+            </h3>
             <fieldset class="starability-basic">
                 <input
                     type="radio"
@@ -86,30 +105,42 @@
                 <label for="first-rate5" title="Amazing">5 stars</label>
             </fieldset>
             <div class="field">
-                <label for="body">Review</label>
+                <label for="body">Review </label>
                 <textarea
                     name="review[body]"
                     id="body"
                     cols="30"
                     rows="3"
                 ></textarea>
+                <i class="fa-regular fa-circle-check bass icon"></i>
+                <i class="fa-regular fa-exclamation-circle error icon"></i>
+                <small> it is look good </small>
             </div>
-            <button class="btn">add</button>
+            <button class="btn positive btn-states">add</button>
         </form>
+        <script src="/campgrounds/js/formValidation.js"></script>
         <% } %>
-        <div class="reviews">
-            <% for (let review of campground.reviews) {%>
+        <div class="reviews-display">
+            <% if(campground.reviews.length > 0) {%>
+            <h3 class="section-title">
+                Reviews
+                <div class="shadow">interact</div>
+            </h3>
+            <% } %> <% for (let review of campground.reviews) {%>
             <div class="review-box">
-                <h4 class="author"><%= review.author.username %></h4>
+                <h4 class="author">
+                    <span> <%= review.author.username[0] %></span><%=
+                    review.author.username %>
+                </h4>
                 <p class="starability-result" data-rating="<%=review.rating%>">
                     Rated :<%= review.rating %> stars
                 </p>
-
-                <p class="body"><%= review.body %></p>
+                <p class="body">Review : <span> <%= review.body %></span></p>
                 <% if( currentUser && review.author.id === currentUser.id) {%>
                 <form
                     action="/campgrounds/<%=campground.id%>/reviews/<%=review.id%>?_method=delete"
                     method="post"
+                    class=""
                 >
                     <button class="btn danger">Delete</button>
                 </form>
@@ -118,4 +149,5 @@
             <% } %>
         </div>
     </div>
+    <script src="/campgrounds/js/slider.js"></script>
 </section>

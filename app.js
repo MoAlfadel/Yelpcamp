@@ -18,6 +18,9 @@ const usersRoutes = require("./routes/users");
 const GoogleStrategy = require("passport-google-oauth20");
 let accountType = null;
 const keys = require("./keys");
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 mongoose
     .connect("mongodb://127.0.0.1:27017/yelp-testing")
     .then(() => console.log(">>> Mongodb connection open !!! "))
@@ -25,14 +28,13 @@ mongoose
         console.log(">>> MOngodb connection error !!! ");
         console.log(error);
     });
-
 // set the views
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 const sessionConfig = {
-    secret: keys.sessionSecret,
+    secret: process.env.sessionSecret,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -64,8 +66,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.use(
     new GoogleStrategy(
         {
-            clientID: keys.googleClientId,
-            clientSecret: keys.googleClientSecret,
+            clientID: process.env.googleClientId,
+            clientSecret: process.env.googleClientSecret,
             callbackURL: "/google/redirect",
         },
         async (accessToken, refreshToken, profile, done) => {
@@ -74,7 +76,6 @@ passport.use(
                 let user = await GoogleUser.findOne({ profileID: profile.id });
                 if (user) {
                     //If user present in our database.
-                    console.log("find google Id in Db !!!!");
                     done(null, user);
                 } else {
                     // if user is not preset in our database save user data to database.
@@ -139,7 +140,7 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    // console.log(err);
+    console.log(err);
     let { status = 500, message = "something went Wrong !! " } = err;
     res.status(status).send(message);
 });

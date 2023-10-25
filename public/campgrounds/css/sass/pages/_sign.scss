@@ -1,6 +1,27 @@
 @use "../helpers/varibles" as *;
 
 .sign {
+    .form-style {
+        .field {
+            input {
+                padding-left: 35px;
+            }
+            .info {
+                position: absolute;
+                left: 13px;
+                top: 38px;
+                color: var(--text-clr);
+            }
+        }
+        .btn.sign {
+            width: 100%;
+            max-width: 450px;
+            padding: 12px 0;
+            font-size: 16px;
+            border-radius: 20px;
+        }
+    }
+
     .or {
         text-align: center;
         margin: 10px 0;
@@ -23,18 +44,31 @@
         &::before {
             content: "";
             position: absolute;
-            width: 100px;
+            width: 200px;
             height: 2px;
             background-color: var(--third-clr);
             z-index: -1;
         }
     }
-    .btn.sign {
-        width: 100%;
-        padding: 12px 0;
-        font-size: 16px;
-        border-radius: 20px;
+    .sign-up {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 10px auto;
+        max-width: 450px;
+        padding: 20px 10px;
+        color: var(--text-clr);
+        a {
+            text-decoration: none;
+            color: var(--text-clr);
+            transition: color 0.3s ease-in-out;
+            &:hover {
+                color: var(--main-clr);
+            }
+        }
     }
+
     .login-with-google-btn {
         cursor: pointer;
         display: block;

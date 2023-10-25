@@ -1,11 +1,15 @@
 <% layout("/layouts/boilerplate") %>
 
 <section class="sign">
+    <h2 class="section-title">
+        Login
+        <div class="shadow">Sign in</div>
+    </h2>
     <form action="/login" method="POST" class="form-style" id="form" novalidate>
-        <h2>login</h2>
         <div class="field">
             <label for="username">username</label>
             <input id="username" type="text" name="username" />
+            <i class="info fa-solid fa-user"></i>
             <i class="fa-regular fa-circle-check bass icon"></i>
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> it is look good </small>
@@ -13,6 +17,7 @@
         <div class="field">
             <label for="password">Password</label>
             <input id="password" type="password" name="password" />
+            <i class="info fa-solid fa-lock"></i>
             <i class="fa-regular fa-circle-check bass icon"></i>
             <i class="fa-regular fa-exclamation-circle error icon"></i>
             <small> it is look good </small>
@@ -23,5 +28,9 @@
     <button type="button" class="login-with-google-btn">
         <a href="/google"> Sign in with Google </a>
     </button>
+    <div class="sign-up">
+        <div class="div">Don't have an account ?</div>
+        <a href="/register">Sign up</a>
+    </div>
     <script src="/campgrounds/js/formValidation.js"></script>
 </section>

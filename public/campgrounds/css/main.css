@@ -1,10 +1,12 @@
 :root {
   --main-clr: #191717;
   --secund-clr: #f1efef;
-  --third-clr: #ccc8aa;
   --text-clr: #7d7c7c;
+  --secund-text-clr: #495057;
+  --third-text-clr: #6c757d;
   --positive-clr: #5cb85c;
   --negative-clr: #ed2939;
+  --third-clr: #dee2e6;
 }
 
 /* ? start global */
@@ -16,6 +18,8 @@
 
 body {
   position: relative;
+  font-family: "Roboto", sans-serif;
+  color: var(--secund-text-clr);
 }
 
 .container {
@@ -43,11 +47,34 @@ body {
     width: 1170px;
   }
 }
+@media (min-width: 1400) {
+  .container {
+    width: 1320px;
+  }
+}
 
 main.container {
   padding: 15px 15px 70px;
   margin-top: 70px;
   min-height: calc(100vh - 70px);
+}
+main.container .section-title {
+  color: var(--main-clr);
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  position: relative;
+}
+main.container .section-title .shadow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -25px;
+  color: var(--secund-clr);
+  font-size: 4rem;
+  z-index: -1;
+  word-spacing: -10px;
+  line-height: 0.7;
 }
 
 header nav {
@@ -66,7 +93,7 @@ header nav {
   width: 100%;
   text-transform: capitalize;
 }
-@media (min-width: 750px) {
+@media (min-width: 767px) {
   header nav {
     justify-content: start;
   }
@@ -124,7 +151,7 @@ header nav .links-container .links {
 header nav .links-container .links.active {
   left: 0;
 }
-@media (min-width: 787px) {
+@media (min-width: 767px) {
   header nav .links-container .links {
     display: flex;
     justify-content: space-between;
@@ -144,7 +171,7 @@ header nav .links-container .links li a {
   color: inherit;
   transition: opacity 0.4s linear;
 }
-header nav .links-container .links li a:hover {
+header nav .links-container .links li a:hover, header nav .links-container .links li a.active {
   opacity: 0.8;
 }
 header nav .links-container .links li.logoutBtn button {
@@ -168,6 +195,8 @@ header nav .links-container .links li.logoutBtn button {
   border: none;
   text-transform: capitalize;
   transition: 0.4s ease-in-out;
+  font-weight: initial;
+  font-size: 1rem;
 }
 .btn.danger {
   background-color: var(--negative-clr);
@@ -180,6 +209,8 @@ header nav .links-container .links li.logoutBtn button {
 .btn a {
   text-decoration: none;
   color: inherit;
+  font-weight: initial;
+  font-size: inherit;
 }
 
 .btn-states {
@@ -205,8 +236,8 @@ header nav .links-container .links li.logoutBtn button {
 
 .flash {
   padding: 20px;
-  margin-bottom: 15px;
-  color: var(--text-clr);
+  margin-bottom: 50px;
+  color: var(--main-clr);
   position: relative;
   text-transform: capitalize;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -237,7 +268,7 @@ header nav .links-container .links li.logoutBtn button {
 
 footer {
   height: 90px;
-  background-color: var(--main-clr);
+  background-color: var(--text-clr);
   padding: 20px 0;
   color: var(--secund-clr);
   line-height: 1.6;
@@ -247,23 +278,23 @@ footer div {
 }
 
 .form-style {
-  padding: 10px;
-  max-width: 500px;
+  padding: 10px 5px;
   margin: 0 auto;
 }
 .form-style .field {
   margin: 15px auto;
   position: relative;
+  max-width: 450px;
 }
 .form-style .field label {
   display: block;
   text-transform: capitalize;
+  margin-bottom: 7px;
 }
 .form-style .field input,
 .form-style .field textarea {
   display: block;
   font-size: 16px;
-  margin-top: 7px;
   width: 100%;
   padding-top: 7px;
   padding-bottom: 7px;
@@ -314,12 +345,92 @@ footer div {
   visibility: visible;
   color: var(--negative-clr);
 }
+.form-style .file-upload {
+  margin: 15px auto 30px;
+  max-width: 450px;
+}
+.form-style .file-upload label {
+  margin-bottom: 7px;
+  display: block;
+}
+.form-style .file-upload .file-upload-select {
+  display: block;
+  cursor: pointer;
+  text-align: left;
+  background-color: var(--secund-clr);
+  overflow: hidden;
+  color: var(--text-clr);
+  border-radius: 30px;
+  position: relative;
+}
+.form-style .file-upload .file-upload-select .file-select-button {
+  background: var(--third-clr);
+  color: var(--main-clr);
+  padding: 12px;
+  display: inline-block;
+}
+.form-style .file-upload .file-upload-select .file-select-name {
+  display: inline-block;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.form-style .file-upload .file-upload-select:hover .file-select-button {
+  background: var(--text-clr);
+  color: var(--secund-clr);
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+.form-style .file-upload .file-upload-select input[type=file] {
+  display: none;
+}
 .form-style .btn {
   margin-left: auto;
   margin-right: auto;
 }
-.form-style h2 {
-  text-align: center;
+
+.slider {
+  width: 100%;
+  height: 225px;
+  position: relative;
+  overflow: hidden; /* <===  */
+}
+.slider .slide {
+  width: 100%;
+  max-width: 800px;
+  position: absolute;
+  transition: all 0.5s;
+}
+.slider .slide img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.slider .slider-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--secund-clr);
+  font-size: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.slider .slider-btn:active {
+  transform: translateY(-50%) scale(1.1);
+}
+.slider .slider-btn.btn-prev {
+  left: 2%;
+}
+.slider .slider-btn.btn-next {
+  right: 2%;
 }
 
 /* ! end global */
@@ -332,6 +443,11 @@ footer div {
   width: auto;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+@media (min-width: 420px) {
+  .campgrounds .campground-container {
+    width: 400px;
+  }
+}
 @media (min-width: 767px) {
   .campgrounds .campground-container {
     flex-direction: row;
@@ -339,16 +455,18 @@ footer div {
     width: 100%;
   }
 }
+.campgrounds .campground-container .slider img,
 .campgrounds .campground-container .image img {
   display: block;
   width: 100%;
+  height: 225px;
 }
 .campgrounds .campground-container .text {
   padding: 10px;
 }
 .campgrounds .campground-container .text .title {
-  font-size: 1.3rem;
   padding: 10px 0;
+  color: var(--third-text-clr);
 }
 .campgrounds .campground-container .text .description {
   margin-bottom: 10px;
@@ -356,7 +474,7 @@ footer div {
   line-height: 1.6;
 }
 .campgrounds .campground-container .text .location {
-  color: var(--text-clr);
+  color: var(--secund-text-clr);
 }
 
 .new .priceField,
@@ -365,7 +483,7 @@ footer div {
 }
 .new .priceField input,
 .edit .priceField input {
-  padding-left: 30px;
+  padding-left: 40px;
 }
 .new .priceField::before,
 .edit .priceField::before {
@@ -374,15 +492,31 @@ footer div {
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 0;
-  top: 26px;
+  left: 2px;
+  top: 28px;
   z-index: 55;
-  background-color: var(--main-clr);
-  color: var(--secund-clr);
-  width: 25px;
-  height: 42px;
+  background-color: var(--third-clr);
+  color: var(--main-clr);
+  width: 30px;
+  height: 40px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+}
+
+.edit .images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  gap: 20px;
+}
+.edit .images .image {
+  cursor: pointer;
+}
+.edit .images .image img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (min-width: 762px) {
@@ -404,13 +538,18 @@ footer div {
   width: 100%;
 }
 .show .campground-container .text .info {
+  color: var(--secund-text-clr);
   padding: 17px;
 }
 .show .campground-container .text .info .title {
   margin-bottom: 17px;
+  color: var(--secund-text-clr);
 }
 .show .campground-container .text .info p {
   line-height: 1.6;
+}
+.show .campground-container .text .author {
+  color: var(--text-clr);
 }
 .show .campground-container .text .location,
 .show .campground-container .text .price,
@@ -427,23 +566,67 @@ footer div {
 }
 .show .campground-container .text .links {
   display: flex;
+  align-items: center;
   padding: 17px;
   gap: 10px;
 }
 .show .campground-container .text .links .btn {
   margin: 0;
 }
+.show .review-container {
+  margin-top: 30px;
+}
 .show .review-container .add-review .field {
   padding: initial;
+  margin-top: -10px;
 }
-.show .review-container .reviews .review-box {
+.show .review-container .add-review .btn {
+  margin-top: -20px;
+}
+.show .review-container .reviews-display .review-box {
   border: 2px solid var(--secund-clr);
   padding: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   line-height: 1.6;
   margin-bottom: 10px;
 }
+.show .review-container .reviews-display .review-box .author {
+  color: var(--text-clr);
+}
+.show .review-container .reviews-display .review-box .author span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--third-clr);
+  color: var(--main-clr);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.show .review-container .reviews-display .review-box .starability-result {
+  margin: 10px 0;
+}
+.show .review-container .reviews-display .review-box .body span {
+  color: var(--text-clr);
+}
 
+.sign .form-style .field input {
+  padding-left: 35px;
+}
+.sign .form-style .field .info {
+  position: absolute;
+  left: 13px;
+  top: 38px;
+  color: var(--text-clr);
+}
+.sign .form-style .btn.sign {
+  width: 100%;
+  max-width: 450px;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 20px;
+}
 .sign .or {
   text-align: center;
   margin: 10px 0;
@@ -467,16 +650,28 @@ footer div {
 .sign .or::before {
   content: "";
   position: absolute;
-  width: 100px;
+  width: 200px;
   height: 2px;
   background-color: var(--third-clr);
   z-index: -1;
 }
-.sign .btn.sign {
-  width: 100%;
-  padding: 12px 0;
-  font-size: 16px;
-  border-radius: 20px;
+.sign .sign-up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px auto;
+  max-width: 450px;
+  padding: 20px 10px;
+  color: var(--text-clr);
+}
+.sign .sign-up a {
+  text-decoration: none;
+  color: var(--text-clr);
+  transition: color 0.3s ease-in-out;
+}
+.sign .sign-up a:hover {
+  color: var(--main-clr);
 }
 .sign .login-with-google-btn {
   cursor: pointer;

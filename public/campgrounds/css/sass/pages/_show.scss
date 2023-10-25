@@ -17,13 +17,19 @@
         }
         .text {
             .info {
+                color: var(--secund-text-clr);
                 padding: calc($main-gap + 7px);
+
                 .title {
                     margin-bottom: calc($main-gap + 7px);
+                    color: var(--secund-text-clr);
                 }
                 p {
                     line-height: $line-height;
                 }
+            }
+            .author {
+                color: var(--text-clr);
             }
             .location,
             .price,
@@ -37,9 +43,11 @@
             .author,
             .price {
                 padding: $main-gap calc($main-gap + 7px);
+                // color: var(--text-clr);
             }
             .links {
                 display: flex;
+                align-items: center;
                 padding: calc($main-gap + 7px);
                 gap: $main-gap;
                 .btn {
@@ -49,18 +57,47 @@
         }
     }
     .review-container {
+        margin-top: 30px;
         .add-review {
             .field {
                 padding: initial;
+                margin-top: -10px;
+            }
+            // border: 2px solid #eee;
+            .btn {
+                margin-top: -20px;
             }
         }
-        .reviews {
+        .reviews-display {
             .review-box {
                 border: 2px solid var(--secund-clr);
                 padding: $main-gap;
                 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
                 line-height: $line-height;
                 margin-bottom: $main-gap;
+                .author {
+                    color: var(--text-clr);
+                    span {
+                        // display: inline-block;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        background-color: var(--third-clr);
+                        color: var(--main-clr);
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-right: 10px;
+                    }
+                }
+                .starability-result {
+                    margin: 10px 0;
+                }
+                .body {
+                    span {
+                        color: var(--text-clr);
+                    }
+                }
             }
         }
     }

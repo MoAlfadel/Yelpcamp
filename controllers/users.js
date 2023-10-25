@@ -21,7 +21,7 @@ module.exports.renderLoginForm = (req, res) => {
     res.render("users/login", { title: "login" });
 };
 module.exports.loginRedirect = (req, res) => {
-    const redirectUrl = req.cookies.returnTo || "/campgrounds";
+    const redirectUrl = req.cookies.returnTo || "/";
     res.clearCookie("returnTo");
     req.flash("success", `Welcome Back ${req.user.username}!`);
     res.redirect(redirectUrl);
@@ -30,9 +30,9 @@ module.exports.logout = (req, res) => {
     req.logout(function (err) {
         if (err) {
             req.flash("success", err.message);
-            return res.redirect("/campgrounds");
+            return res.redirect("/");
         }
         req.flash("success", "goodBye!");
-        res.redirect("/campgrounds");
+        res.redirect("/");
     });
 };

@@ -21,7 +21,7 @@ module.exports.isCampgroundAuthor = async (req, res, next) => {
     next();
 };
 module.exports.validateCampground = (req, res, next) => {
-    const { error } = campgroundSchema.validate(req.body);
+    const { error } = campgroundSchema.validate(req.body.campground);
     if (error) {
         let msg = error.details.map((elt) => elt.message).join(",");
         throw new ExpressError(msg, 400);

@@ -4,11 +4,18 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>test</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Tilt+Prism&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="css/main.css" />
-        <!-- <link rel="stylesheet" href="css/all.min.css" /> -->
+        <link rel="stylesheet" href="css/all.min.css" />
+        <link rel="stylesheet" href="css/stars.css" />
     </head>
-    <body class="home-page">
-        <!-- <header>
+    <body>
+        <header>
             <nav class="">
                 <div class="log">
                     <h1>YelpCamp</h1>
@@ -20,22 +27,34 @@
                         <span></span>
                     </div>
                     <ul class="links" id="links">
-                        <li><a href="/">home</a></li>
-                        <li><a href="/campgrounds">campgrounds</a></li>
-                        <li><a href="/campgrounds/new">new campground</a></li>
-                        <li class="login"><a href="/login"> login</a></li>
-                        <li class="login"><a href="/register"> register</a></li>
-                        <li class="login"><a href="/logout"> logout</a></li>
-                        <li class="login logoutBtn">
-                            <form action="/logout" method="post">
-                                <button>Logout</button>
-                            </form>
-                        </li>
+                        <div>
+                            <li><a href="/">home</a></li>
+                            <li>
+                                <a href="/campgrounds" class="active"
+                                    >campgrounds</a
+                                >
+                            </li>
+                            <li>
+                                <a href="/campgrounds/new">new campground</a>
+                            </li>
+                        </div>
+                        <div>
+                            <li class="login"><a href="/login"> login</a></li>
+                            <li class="login">
+                                <a href="/register"> register</a>
+                            </li>
+                            <li class="login"><a href="/logout"> logout</a></li>
+                            <li class="login logoutBtn">
+                                <form action="/logout" method="post">
+                                    <button>Logout</button>
+                                </form>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </nav>
-        </header> -->
-        <header>
+        </header>
+        <!-- <header>
             <nav class="container">
                 <div class="log">
                     <h1>YelpCamp</h1>
@@ -61,8 +80,8 @@
                     </ul>
                 </div>
             </nav>
-        </header>
-        <main>
+        </header> -->
+        <!-- <main  class="home">
             <div class="box container">
                 <h2>YelpCamp</h2>
                 <h3>Welcome To YelpCamp !</h3>
@@ -72,12 +91,32 @@
                 </p>
                 <button class="btn">View Campgrounds</button>
             </div>
-        </main>
-        <!-- <main class="container"> -->
-        <!-- <section class="campgrounds">
+        </main> -->
+        <main class="container">
+            <!-- <section class="campgrounds">
+                <h2 class="section-title">
+                    All campgrounds
+                    <div class="shadow">Enjoy</div>
+                </h2>
                 <div class="campground-container">
-                    <div class="image">
-                        <img src="port7.jpg" />
+                    <div class="slider">
+                        <div class="slide">
+                            <img
+                                src="Tent_camping_along_the_Sulayr_trail_in_La_Taha,_Sierra_Nevada_National_Park_(DSCF5147).jpg"
+                                alt=""
+                            />
+                        </div>
+
+                        <div class="slide">
+                            <img src="test-img.jpg" alt="" />
+                        </div>
+
+                        <button class="slider-btn btn-next">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </button>
+                        <button class="slider-btn btn-prev">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </button>
                     </div>
                     <div class="text">
                         <h5 class="title">Yalla campground</h5>
@@ -91,13 +130,13 @@
                             <small>Omdurman, Suban </small>
                         </p>
                         <div class="btn">
-                            <a href="/"> view </a>
+                            <a href="/"> view Yella campground </a>
                         </div>
                     </div>
                 </div>
                 <div class="campground-container">
                     <div class="image">
-                        <img src="port7.jpg" />
+                        <img src="test-img.jpg" />
                     </div>
                     <div class="text">
                         <h5 class="title">Yalla campground</h5>
@@ -111,13 +150,13 @@
                             <small>Omdurman, Suban </small>
                         </p>
                         <div class="btn">
-                            <a href="/"> view </a>
+                            <a href="/"> view Yella campground </a>
                         </div>
                     </div>
                 </div>
                 <div class="campground-container">
                     <div class="image">
-                        <img src="port7.jpg" />
+                        <img src="test-img.jpg" />
                     </div>
                     <div class="text">
                         <h5 class="title">Yalla campground</h5>
@@ -131,13 +170,13 @@
                             <small>Omdurman, Suban </small>
                         </p>
                         <div class="btn">
-                            <a href="/"> view </a>
+                            <a href="/"> view Yella campground </a>
                         </div>
                     </div>
                 </div>
                 <div class="campground-container">
                     <div class="image">
-                        <img src="port7.jpg" />
+                        <img src="test-img.jpg" />
                     </div>
                     <div class="text">
                         <h5 class="title">Yalla campground</h5>
@@ -151,12 +190,13 @@
                             <small>Omdurman, Suban </small>
                         </p>
                         <div class="btn">
-                            <a href="/"> view </a>
+                            <a href="/"> view Yella campground </a>
                         </div>
                     </div>
                 </div>
+                <script src="js/slider.js"></script>
             </section> -->
-        <!-- <section class="flash success" id="flash">
+            <!-- <section class="flash success" id="flash">
                 successfuly doing some
                 <button id="cancelFlash">
                     <i class="fa-solid fa-xmark"></i>
@@ -168,9 +208,9 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </section> -->
-        <!-- <section class="new">
+            <!-- <section class="new">
+                <h2 class="section-title">Add New Campground</h2>
                 <form action="" method="POST" class="form-style" id="form">
-                    <h2>Add New Campground</h2>
                     <div class="field success">
                         <label for="title">title</label>
                         <input
@@ -240,8 +280,8 @@
                     <button class="btn">Add Campground</button>
                 </form>
             </section> -->
-        <!-- <section class="edit">
-                <h2>Edit Campground</h2>
+            <!-- <section class="edit">
+                <h2 class="section-title">Edit Campground</h2>
                 <form action="/campgrounds" method="POST" class="form-style">
                     <div class="field">
                         <label for="title">title</label>
@@ -292,10 +332,26 @@
                     </div>
                 </form>
             </section> -->
-        <!-- <section class="show">
+            <section class="show">
                 <div class="campground-container">
-                    <div class="image">
-                        <img src="test-img.jpg" alt="" />
+                    <!-- Slider container -->
+                    <div class="slider">
+                        <!-- slide 1 -->
+                        <div class="slide">
+                            <img
+                                src="Tent_camping_along_the_Sulayr_trail_in_La_Taha,_Sierra_Nevada_National_Park_(DSCF5147).jpg"
+                                alt=""
+                            />
+                        </div>
+
+                        <!-- slide 2 -->
+                        <div class="slide">
+                            <img src="test-img.jpg" alt="" />
+                        </div>
+
+                        <!-- Control buttons -->
+                        <button class="slider-btn btn-next">></button>
+                        <button class="slider-btn btn-prev"><</button>
                     </div>
                     <div class="text">
                         <div class="info">
@@ -342,33 +398,27 @@
                         </div>
                         <button class="btn positive">add</button>
                     </form>
-                    <div class="reviews">
+                    <div class="reviews-display">
+                        <h3 class="section-title">
+                            Reviews
+                            <div class="shadow">interact</div>
+                        </h3>
                         <div class="review-box">
-                            <h4 class="rating">Rating : 5</h4>
-                            <p class="body">
-                                Review : Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Eligendi, alias!
+                            <h4 class="author">Mohammed_Alfadel</h4>
+                            <p class="starability-result" data-rating="2">
+                                Rated :2 stars
                             </p>
-                            <form action="">
-                                <button class="btn danger">Delete</button>
-                            </form>
-                        </div>
-                        <div class="review-box">
-                            <h4 class="rating">Rating : 3</h4>
-                            <p class="body">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Voluptatum exercitationem
-                                soluta doloremque veniam quod. Vitae consequatur
-                                voluptas odit iure tempora!
-                            </p>
-                            <form action="">
-                                <button class="btn danger">Delete</button>
-                            </form>
+                            <p class="body">Review : <span> baadd</span></p>
                         </div>
                     </div>
                 </div>
-            </section> -->
-        <!-- <section class="sign">
+                <script src="js/slider.js"></script>
+            </section>
+            <!-- <section class="sign login">
+                <h2 class="section-title">
+                    Login
+                    <div class="shadow">Sign in</div>
+                </h2>
                 <form
                     action="/login"
                     method="POST"
@@ -376,7 +426,6 @@
                     id="form"
                     novalidate
                 >
-                    <h2>login</h2>
                     <div class="field">
                         <label for="username">username</label>
                         <input
@@ -385,6 +434,7 @@
                             name="username"
                             placeholder="username"
                         />
+                        <i class="info fa-solid fa-user"></i>
                         <i class="fa-regular fa-circle-check bass icon"></i>
                         <i
                             class="fa-regular fa-exclamation-circle error icon"
@@ -399,6 +449,7 @@
                             name="password"
                             placeholder="Password"
                         />
+                        <i class="info fa-solid fa-lock"></i>
                         <i class="fa-regular fa-circle-check bass icon"></i>
                         <i
                             class="fa-regular fa-exclamation-circle error icon"
@@ -411,9 +462,93 @@
                 <button type="button" class="login-with-google-btn btn-states">
                     <a href="/google"> Sign in with Google </a>
                 </button>
+                <div class="sign-up">
+                    <div class="div">Don't have an account ?</div>
+                    <a href="/register">Sign up</a>
+                </div>
                 <script src="/campgrounds/js/formValidation.js"></script>
             </section> -->
-        <!-- </main> -->
+            <!-- <section class="sign register">
+                <h2 class="section-title">
+                    Register
+                    <div class="shadow">Sign up</div>
+                </h2>
+                <form
+                    action="/register"
+                    method="POST"
+                    class="form-style"
+                    id="form"
+                    novalidate
+                >
+                    <div class="field">
+                        <label for="username">username</label>
+                        <input id="username" type="text" name="username" />
+                        <i class="info fa-solid fa-user"></i>
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" type="text" name="email" />
+                        <i class="info fa-solid fa-envelope"></i>
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> error </small>
+                    </div>
+                    <div class="field password">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" />
+                        <i class="info fa-solid fa-lock"></i>
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <div class="field password-check">
+                        <label for="password-check">Password checked</label>
+                        <input
+                            id="password-check"
+                            type="password"
+                            name="password-check"
+                        />
+                        <i class="info fa-solid fa-lock"></i>
+                        <i class="fa-regular fa-circle-check bass icon"></i>
+                        <i
+                            class="fa-regular fa-exclamation-circle error icon"
+                        ></i>
+                        <small> it is look good </small>
+                    </div>
+                    <div class="file-upload">
+                        <div class="file-upload-select" id="file-select">
+                            <div class="file-select-button">
+                                Choose Image(s)...
+                            </div>
+                            <div class="file-select-name">
+                                No file chosen...
+                            </div>
+                            <input
+                                type="file"
+                                name="file-upload-input"
+                                id="file-upload-input"
+                                multiple
+                            />
+                        </div>
+                    </div>
+
+                    <button class="btn sign btn-states">Sign Up</button>
+                </form>
+                <div class="or"><div class="text">or</div></div>
+                <button type="button" class="login-with-google-btn">
+                    <a href="/google"> Sign Up with Google </a>
+                </button>
+            </section> -->
+        </main>
         <footer>
             <div>Made With <span>&#10084;</span> By Mo Alfadel</div>
             <div>&COPY; YelpCamp 2023</div>
