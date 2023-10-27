@@ -1,5 +1,4 @@
 const express = require("express");
-const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -9,23 +8,34 @@ const mongoose = require("mongoose");
 const ExpressError = require("./utils/ExpressError.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const { User, GoogleUser } = require("./models/user");
 const cookieParser = require("cookie-parser");
 
 const campgroundsRoutes = require("./routes/campgrounds.js");
 const reviewsRoutes = require("./routes/reviews");
 const usersRoutes = require("./routes/users");
 const GoogleStrategy = require("passport-google-oauth20");
+
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const MongoStore = require("connect-mongo");
+
+const { User, GoogleUser } = require("./models/user");
+
+const app = express();
 let accountType = null;
-const keys = require("./keys");
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
+const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-testing";
+const secret = process.env.sessionSecret || "thisShouldBeBetterSecret";
 mongoose
-    .connect("mongodb://127.0.0.1:27017/yelp-testing")
+    .connect(dbUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
     .then(() => console.log(">>> Mongodb connection open !!! "))
     .catch((error) => {
-        console.log(">>> MOngodb connection error !!! ");
+        console.log(">>> Mongodb connection error !!! ");
         console.log(error);
     });
 // set the views
@@ -33,8 +43,18 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+const store = new MongoStore({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e);
+});
+
 const sessionConfig = {
-    secret: process.env.sessionSecret,
+    secret,
+    store,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -43,6 +63,50 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7,
     },
 };
+const scriptSrcUrls = [
+    "https://stackpath.bootstrapcdn.com",
+    "https://api.tiles.mapbox.com",
+    "https://api.mapbox.com",
+    "https://kit.fontawesome.com",
+    "https://cdnjs.cloudflare.com",
+    "https://cdn.jsdelivr.net",
+];
+const styleSrcUrls = [
+    "https://kit-free.fontawesome.com",
+    "https://stackpath.bootstrapcdn.com",
+    "https://api.mapbox.com",
+    "https://api.tiles.mapbox.com",
+    "https://fonts.googleapis.com",
+    "https://use.fontawesome.com",
+];
+const connectSrcUrls = [
+    "https://api.mapbox.com",
+    "https://*.tiles.mapbox.com",
+    "https://events.mapbox.com",
+];
+const fontSrcUrls = ["https://fonts.gstatic.com/"];
+app.use(helmet());
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            childSrc: ["blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/dtdiayqkt/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+                "https://images.unsplash.com",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 // using static files
 app.use(express.static(path.join(__dirname, "public")));
 // using form in post data
@@ -55,6 +119,8 @@ app.use(cookieParser());
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(mongoSanitize());
+//
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -140,9 +206,9 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    console.log(err);
+    // console.log(err.stack);
     let { status = 500, message = "something went Wrong !! " } = err;
-    res.status(status).send(message);
+    res.status(status).render("error", { error: err, title: "Error " });
 });
 app.listen(3000, () => {
     console.log(">>> serving at port 8080 !!!");
