@@ -16,9 +16,10 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = catchAsync(async (req, res, next) => {
+    console.log(req.session.accountType);
     let campground = new Campground({
         ...req.body.campground,
-        accountType: req.session.accountType || "googleUser",
+        accountType: req.session.accountType,
     });
     campground.image = req.files.map((file) => ({
         url: file.path,
@@ -26,7 +27,7 @@ module.exports.createCampground = catchAsync(async (req, res, next) => {
     }));
     campground.author = req.user.id;
     await campground.save();
-    console.log(campground);
+    // console.log(campground);
     req.flash("success", "successfully made a New Campground");
     res.redirect(`/campgrounds/${campground.id}`);
 });
