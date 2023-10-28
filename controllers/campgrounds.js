@@ -18,7 +18,7 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createCampground = catchAsync(async (req, res, next) => {
     let campground = new Campground({
         ...req.body.campground,
-        accountType: req.user instanceof User ? "User" : "googleUser",
+        accountType: req.session.accountType || "googleUser",
     });
     campground.image = req.files.map((file) => ({
         url: file.path,
