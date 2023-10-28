@@ -1,6 +1,7 @@
 const Campground = require("../models/campground");
 const catchAsync = require("../utils/CatchAsync");
 const { cloudinary } = require("../cloudinary/index");
+const User = require("../models/user");
 module.exports.indexPage = catchAsync(async (req, res, next) => {
     let campgrounds = await Campground.find({});
 
@@ -17,7 +18,7 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createCampground = catchAsync(async (req, res, next) => {
     let campground = new Campground({
         ...req.body.campground,
-        accountType: req.session.accountType,
+        accountType: req.user instanceof User ? "User" : "googleUser",
     });
     campground.image = req.files.map((file) => ({
         url: file.path,
