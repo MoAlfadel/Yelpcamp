@@ -164,7 +164,12 @@ header nav .links-container .links.active {
   }
 }
 header nav .links-container .links li {
-  padding: 10px 20px;
+  padding: 20px 20px;
+}
+@media (min-width: 767px) {
+  header nav .links-container .links li {
+    padding: 5px 20px;
+  }
 }
 header nav .links-container .links li a {
   text-decoration: none;
@@ -173,6 +178,9 @@ header nav .links-container .links li a {
 }
 header nav .links-container .links li a:hover, header nav .links-container .links li a.active {
   opacity: 0.8;
+}
+header nav .links-container .links li .icon {
+  margin-right: 5px;
 }
 header nav .links-container .links li.logoutBtn button {
   background-color: transparent;

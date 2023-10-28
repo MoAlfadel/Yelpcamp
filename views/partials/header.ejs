@@ -11,18 +11,59 @@
             </div>
             <ul class="links" id="links">
                 <div>
-                    <li><a href="/">home</a></li>
-                    <li><a href="/campgrounds">campgrounds</a></li>
-                    <li><a href="/campgrounds/new">new campground</a></li>
+                    <li>
+                        <a href="/">
+                            <i class="fa icon fa-home" aria-hidden="true"></i>
+                            home</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/campgrounds">
+                            <i class="fa-solid icon fa-campground"></i>
+                            campgrounds</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/campgrounds/new">
+                            <i
+                                class="fa fa-plus-square icon"
+                                aria-hidden="true"
+                            ></i>
+
+                            new campground</a
+                        >
+                    </li>
                 </div>
                 <div>
                     <% if(!currentUser) {%>
-                    <li class="login"><a href="/login"> login</a></li>
-                    <li class="login"><a href="/register"> register</a></li>
+                    <li class="login">
+                        <a href="/login">
+                            <i
+                                class="fa icon fa-sign-in"
+                                aria-hidden="true"
+                            ></i>
+                            login</a
+                        >
+                    </li>
+                    <li class="login">
+                        <a href="/register">
+                            <i
+                                class="fa icon fa-sign-in"
+                                aria-hidden="true"
+                            ></i>
+                            register</a
+                        >
+                    </li>
                     <% } else { %>
                     <li class="login logoutBtn">
                         <form action="/logout" method="post">
-                            <button>Logout</button>
+                            <button>
+                                <i
+                                    class="fa icon fa-sign-out"
+                                    aria-hidden="true"
+                                ></i>
+                                Logout
+                            </button>
                         </form>
                     </li>
                     <% } %>
