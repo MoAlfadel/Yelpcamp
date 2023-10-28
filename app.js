@@ -23,17 +23,14 @@ const { User, GoogleUser } = require("./models/user");
 
 const app = express();
 let accountType = null;
-if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
-}
+// if (process.env.NODE_ENV !== "production") {
+//     require("dotenv").config();
+// }
 const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-testing";
 
 const secret = process.env.sessionSecret || "thisShouldBeBetterSecret";
 mongoose
-    .connect(dbUrl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+    .connect(dbUrl)
     .then(() => console.log(">>> Mongodb connection open !!! "))
     .catch((error) => {
         console.log(">>> Mongodb connection error !!! ");
