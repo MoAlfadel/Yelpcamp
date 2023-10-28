@@ -133,7 +133,7 @@ passport.use(
             clientID: process.env.googleClientId,
             clientSecret: process.env.googleClientSecret,
             // callbackURL: "/google/redirect",
-            callbackURL: "http://localhost:3000/google/redirect",
+            callbackURL: "https://yelpcamp-7lhd.onrender.com/google/redirect",
             //    "/google/redirect",
         },
         async (accessToken, refreshToken, profile, done) => {
