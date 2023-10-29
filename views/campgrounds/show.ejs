@@ -5,7 +5,8 @@
     <div class="campground-container">
         <!-- Slider container -->
         <div class="slider">
-            <%if(campground.length > 0){ for ( let img of campground.image) { %>
+            <%if(campground.image.length > 0){ for ( let img of
+            campground.image) { %>
             <div class="slide">
                 <img src="<%= img.url %>" alt="" />
             </div>

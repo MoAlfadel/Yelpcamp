@@ -23,9 +23,9 @@ const { User, GoogleUser } = require("./models/user");
 
 const app = express();
 let accountType = null;
-// if (process.env.NODE_ENV !== "production") {
-//     require("dotenv").config();
-// }
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-testing";
 
 const secret = process.env.sessionSecret || "thisShouldBeBetterSecret";
