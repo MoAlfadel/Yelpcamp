@@ -5,7 +5,7 @@
     <div class="campground-container">
         <!-- Slider container -->
         <div class="slider">
-            <%if(<camoground.length >0)   for ( let img of campground.image) { %>
+            <%if(camoground.length > 0){ for ( let img of campground.image) { %>
             <div class="slide">
                 <img src="<%= img.url %>" alt="" />
             </div>
@@ -18,7 +18,7 @@
             <button class="slider-btn btn-prev">
                 <i class="fa-solid fa-angle-left"></i>
             </button>
-            <% } %>
+            <% } }%>
         </div>
         <div class="text">
             <div class="info">
