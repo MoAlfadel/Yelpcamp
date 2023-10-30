@@ -1,9 +1,9 @@
 const Review = require("../models/review");
 const Campground = require("../models/campground");
 const catchAsync = require("../utils/CatchAsync.js");
+const User = require("../models/user");
 
 module.exports.createReview = catchAsync(async (req, res) => {
-    console.log(req.session.accountType);
     const campground = await Campground.findById(req.params.id);
     const review = new Review({
         ...req.body.review,

@@ -23,10 +23,13 @@ const { User, GoogleUser } = require("./models/user");
 
 const app = express();
 let accountType = null;
+let dbUrl = null;
 if (process.env.NODE_ENV !== "production") {
+    dbUrl = "mongodb://127.0.0.1:27017/yelp-testing";
     require("dotenv").config();
+} else {
+    dbUrl = process.env.DB_URL;
 }
-const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-testing";
 
 const secret = process.env.sessionSecret || "thisShouldBeBetterSecret";
 mongoose
@@ -176,8 +179,14 @@ passport.serializeUser((user, done) => {
 // used to deserialize the user
 passport.deserializeUser((id, done) => {
     GoogleUser.findById(id)
-        .then((user) => done(null, user))
-        .catch((err) => done("pass"));
+        .then((user) => {
+            accountType = "googleUser";
+            done(null, user);
+        })
+        .catch((err) => {
+            accountType = "User";
+            done("pass");
+        });
 });
 
 // use static serialize and deserialize of model for passport session support
@@ -211,5 +220,5 @@ app.use((err, req, res, next) => {
     res.status(status).render("error", { error: err, title: "Error " });
 });
 app.listen(3000, () => {
-    console.log(">>> serving at port 8080 !!!");
+    console.log(">>> serving at port 3000 ...!!!");
 });
