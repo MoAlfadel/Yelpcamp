@@ -169,6 +169,7 @@ header nav .links-container .links li {
 @media (min-width: 767px) {
   header nav .links-container .links li {
     padding: 5px 20px;
+    text-align: center;
   }
 }
 header nav .links-container .links li a {
