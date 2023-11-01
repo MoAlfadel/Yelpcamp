@@ -1,6 +1,9 @@
 <% layout("/layouts/boilerplate") %>
 <section class="edit">
-    <h2 class="section-title">Edit Campground</h2>
+    <h2 class="section-title">
+        Edit Campground
+        <div class="shadow">Update your own campground</div>
+    </h2>
     <form
         action="/campgrounds/<%=campground.id%>?_method=put"
         method="POST"

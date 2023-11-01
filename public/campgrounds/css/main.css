@@ -59,22 +59,35 @@ main.container {
   min-height: calc(100vh - 70px);
 }
 main.container .section-title {
-  color: var(--main-clr);
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
   position: relative;
+  padding: 0;
+  margin: 30px 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--secund-text-clr);
+  text-align: center;
 }
-main.container .section-title .shadow {
+main.container .section-title::before {
+  width: 30px;
+  height: 3px;
+  display: block;
+  content: "";
   position: absolute;
+  bottom: 3px;
   left: 50%;
   transform: translateX(-50%);
-  top: -25px;
-  color: var(--secund-clr);
-  font-size: 4rem;
-  z-index: -1;
-  word-spacing: -10px;
-  line-height: 0.7;
+  background-color: var(--secund-text-clr);
+}
+main.container .section-title .shadow {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1.7rem;
+  padding-left: 0.25em;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
 }
 
 header nav {
