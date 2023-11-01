@@ -24,6 +24,7 @@ const { User, GoogleUser } = require("./models/user");
 const app = express();
 let accountType = null;
 let dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/yelp-testing";
+// let dbUrl =  "mongodb://127.0.0.1:27017/yelp-testing";
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
@@ -216,6 +217,8 @@ app.use((err, req, res, next) => {
     let { status = 500, message = "something went Wrong !! " } = err;
     res.status(status).render("error", { error: err, title: "Error " });
 });
-app.listen(3000, () => {
-    console.log(">>> serving at port 3000 ...!!!");
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`>>> serving at port ${port} ...!!!`);
 });
