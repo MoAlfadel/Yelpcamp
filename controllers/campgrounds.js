@@ -3,11 +3,19 @@ const catchAsync = require("../utils/CatchAsync");
 const { cloudinary } = require("../cloudinary/index");
 const User = require("../models/user");
 module.exports.indexPage = catchAsync(async (req, res, next) => {
-    let campgrounds = await Campground.find({});
-
+    const { q } = req.query;
+    let campgrounds;
+    if (q) {
+        campgrounds = await Campground.find({
+            title: { $regex: q, $options: "i" },
+        });
+    } else if (!q) {
+        campgrounds = await Campground.find({});
+    }
     return res.render("campgrounds/index.ejs", {
         campgrounds,
         title: "All Campgrounds",
+        q,
     });
 });
 

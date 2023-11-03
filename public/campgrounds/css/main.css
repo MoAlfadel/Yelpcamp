@@ -111,6 +111,9 @@ header nav {
     justify-content: start;
   }
 }
+header nav .logo h1 {
+  font-size: 1.7rem;
+}
 @media (min-width: 767px) {
   header nav .links-container {
     width: 100%;
@@ -456,6 +459,36 @@ footer div {
 }
 
 /* ! end global */
+.campgrounds .form-style .field {
+  margin: 0 auto;
+  position: relative;
+}
+.campgrounds .form-style .field input {
+  padding-left: 35px;
+}
+.campgrounds .form-style .field .search-icon {
+  position: absolute;
+  left: 12.5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.campgrounds .result-for {
+  margin: 20px 0;
+  text-align: center;
+}
+.campgrounds .result-for span {
+  font-weight: bold;
+}
+.campgrounds .not-found {
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: center;
+}
+.campgrounds .not-found .fa-solid {
+  font-weight: bold;
+  font-size: 3rem;
+  color: var(--negative-clr);
+}
 .campgrounds .campground-container {
   display: flex;
   flex-direction: column;
@@ -477,7 +510,6 @@ footer div {
     width: 100%;
   }
 }
-.campgrounds .campground-container .slider img,
 .campgrounds .campground-container .image img {
   display: block;
   width: 100%;

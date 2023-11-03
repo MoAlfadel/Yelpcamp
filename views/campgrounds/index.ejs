@@ -1,10 +1,36 @@
 <% layout("/layouts/boilerplate") %>
 <section class="campgrounds">
+    <form action="/campgrounds" method="get" class="form-style">
+        <div class="field">
+            <input
+                type="text"
+                value="<%= q %>"
+                name="q"
+                id=""
+                class="search"
+                placeholder="Search for Campground"
+            />
+            <i class="search-icon fa-search fa-solid"></i>
+        </div>
+    </form>
+    <% if(!q) {%>
     <h2 class="section-title">
         All Campgrounds
         <div class="shadow">Enjoy</div>
     </h2>
-    <% for (campground of campgrounds ) { %>
+    <% } else { %>
+    <h3 class="section-title">
+        Results For <span> <%= q %> </span>
+        <div class="shadow">search results</div>
+    </h3>
+    <% if(campgrounds.length === 0 ){ %>
+    <div class="not-found">
+        No search results found
+        <i class="fa-solid fa fa-face-sad"></i>
+    </div>
+    <% } %> <% } %>
+    <!--  display campgrounds -->
+    <% for (let campground of campgrounds ) { %>
     <div class="campground-container">
         <div class="image">
             <img src="<%= campground.image.length > 0 ? campground.image[0].url

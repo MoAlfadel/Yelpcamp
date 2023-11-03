@@ -23,7 +23,7 @@ module.exports.renderLoginForm = (req, res) => {
 module.exports.loginRedirect = (req, res) => {
     const redirectUrl = req.cookies.returnTo || "/";
     res.clearCookie("returnTo");
-    req.flash("success", `Welcome Back ${req.user.username}!`);
+    req.flash("success", `Welcome To YelpCamp!`);
     res.redirect(redirectUrl);
 };
 module.exports.logout = (req, res) => {

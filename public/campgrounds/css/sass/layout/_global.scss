@@ -88,6 +88,9 @@ header {
             justify-content: start;
         }
         .logo {
+            h1 {
+                font-size: 1.7rem;
+            }
         }
         .links-container {
             @media (min-width: 767px) {
@@ -283,7 +286,6 @@ footer {
 .form-style {
     padding: 10px 5px;
     margin: 0 auto;
-
     .field {
         margin: 15px auto;
         position: relative;

@@ -1,5 +1,38 @@
 @use "../helpers/varibles" as *;
 .campgrounds {
+    .form-style {
+        .field {
+            margin: 0 auto;
+            position: relative;
+            input {
+                padding-left: 35px;
+            }
+            .search-icon {
+                // color: red;
+                position: absolute;
+                left: calc(25px / 2);
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+    .result-for {
+        margin: 20px 0;
+        text-align: center;
+        span {
+            font-weight: bold;
+        }
+    }
+    .not-found {
+        font-weight: bold;
+        text-transform: capitalize;
+        text-align: center;
+        .fa-solid {
+            font-weight: bold;
+            font-size: 3rem;
+            color: var(--negative-clr);
+        }
+    }
     .campground-container {
         display: flex;
         flex-direction: column;
@@ -17,7 +50,6 @@
             width: 100%;
         }
         // remove this
-        .slider,
         .image {
             img {
                 display: block;
