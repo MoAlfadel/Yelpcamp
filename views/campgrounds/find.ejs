@@ -8,28 +8,38 @@
         <div class="find-container">
             <div class="box">
                 <div class="field rating">
-                    <label for="rating"> Rating </label>
-                    <select name="rating" id="ratong">
+                    <label for="rating">
+                        <i class="fa fa-star "> </i>
+                        Rating </label>
+                    <select name="rating" id="ratong" aria-placeholder="">
                         <% for (let i = 0 ; i <= 5 ; i++ ) {%>
-                        <option value="<%= i %>"><%= i %> star</option>
+                        <option value="<%= i %>" <%= i == rating ? 'selected' : ''  %>>
+                            <%= i %> stars
+                        </option>
                         <% } %>
                     </select>
+                    <small>Equal or greater than </small>
                 </div>
                 <div class="field price">
-                    <label for="price"> price </label>
+                    <label for="price"> 
+                        <div class="fa fa-dollar"></div>
+                        price </label>
                     <input
                         type="Number"
                         id="price"
                         name="price"
                         value="<%= price %>"
                         min="1"
-                        placeholder="price equal or less than "
+                        placeholder="price "
                     />
+                    <small>Equal or less than</small>
                 </div>
             </div>
             <div class="box">
                 <div class="field">
-                    <label for="location"> location </label>
+                    <label for="location">
+                        <i class="fa fa-map-marker"></i>
+                        location </label>
                     <input
                         type="text"
                         id="location"
@@ -38,13 +48,15 @@
                         value="<%= location %>"
                     />
                 </div>
-                <button class="btn btn-states">Search</button>
+                <button class="btn btn-states">
+                    <i class="fa fa-search"></i>
+                    Search</button>
             </div>
         </div>
     </form>
 </section>
 <section class="campgrounds">
-    <% if(!campgrounds.length) {%> <% } %>
+    <% if(campgrounds) {%>
     <!--  display campgrounds -->
     <% for (let campground of campgrounds ) { %>
     <div class="campground-container">
@@ -65,6 +77,7 @@
             </button>
         </div>
     </div>
+    <% } %>
     <% } %>
     <!--  -->
     <div class="more-camps">

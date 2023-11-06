@@ -10,6 +10,11 @@
         box-shadow: $shadow;
         margin-bottom: calc($main-gap * 2);
         height: fit-content;
+        @media (min-width: 762px) {
+            position: sticky;
+            left: 0;
+            top: 90px;
+        }
 
         img {
             display: block;
@@ -23,6 +28,7 @@
                 .title {
                     margin-bottom: calc($main-gap + 7px);
                     color: var(--secund-text-clr);
+                    font-size: 1.4rem;
                 }
                 p {
                     line-height: $line-height;
@@ -45,15 +51,14 @@
             .price,
             .rating {
                 padding: $main-gap calc($main-gap + 7px);
+                .icon {
+                    color: var(--text-clr);
+                }
             }
             .rating {
                 display: flex;
                 justify-content: space-between;
-                .rating-container {
-                    .star-icon {
-                        color: var(--main-clr);
-                    }
-                }
+                color: var(--text-clr);
                 .reviews-number {
                 }
             }
@@ -68,6 +73,7 @@
             }
         }
     }
+
     .review-container {
         margin-top: 30px;
         .add-review {

@@ -21,6 +21,26 @@ body {
   font-family: "Roboto", sans-serif;
   color: var(--secund-text-clr);
 }
+body .body-container {
+  transition: all 0.4s linear;
+  position: relative;
+}
+body .body-container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  transition: all 0.4s linear;
+  background-image: none;
+  z-index: 99;
+}
+body .body-container.blur::before {
+  display: block;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
 
 .container {
   padding: 0 15px;
@@ -156,19 +176,23 @@ header nav .links-container .menu.active span:nth-child(3) {
 }
 header nav .links-container .links {
   position: absolute;
-  width: 100%;
+  height: calc(100vh - 70px);
+  width: 230px;
   top: 70px;
   list-style-type: none;
   z-index: 8888;
   transition: left 0.4s ease-in-out;
   left: -200vh;
-  background-color: var(--main-clr);
+  background-color: rgba(26, 23, 23, 0.9);
 }
 header nav .links-container .links.active {
   left: 0;
 }
 @media (min-width: 767px) {
   header nav .links-container .links {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -192,9 +216,10 @@ header nav .links-container .links li a {
   text-decoration: none;
   color: inherit;
   transition: opacity 0.4s linear;
+  font-size: 14px;
 }
 header nav .links-container .links li a:hover, header nav .links-container .links li a.active {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 header nav .links-container .links li .icon {
   margin-right: 5px;
@@ -552,6 +577,7 @@ footer div {
   cursor: default;
   background-color: var(--secund-clr);
   color: var(--text-clr);
+  border-radius: 50px;
 }
 
 .new .priceField,
@@ -610,6 +636,13 @@ footer div {
   height: -moz-fit-content;
   height: fit-content;
 }
+@media (min-width: 762px) {
+  .show .campground-container {
+    position: sticky;
+    left: 0;
+    top: 90px;
+  }
+}
 .show .campground-container img {
   display: block;
   width: 100%;
@@ -621,6 +654,7 @@ footer div {
 .show .campground-container .text .info .title {
   margin-bottom: 17px;
   color: var(--secund-text-clr);
+  font-size: 1.4rem;
 }
 .show .campground-container .text .info p {
   line-height: 1.6;
@@ -643,12 +677,16 @@ footer div {
 .show .campground-container .text .rating {
   padding: 10px 17px;
 }
+.show .campground-container .text .location .icon,
+.show .campground-container .text .author .icon,
+.show .campground-container .text .price .icon,
+.show .campground-container .text .rating .icon {
+  color: var(--text-clr);
+}
 .show .campground-container .text .rating {
   display: flex;
   justify-content: space-between;
-}
-.show .campground-container .text .rating .rating-container .star-icon {
-  color: var(--main-clr);
+  color: var(--text-clr);
 }
 .show .campground-container .text .links {
   display: flex;
@@ -843,7 +881,7 @@ footer div {
 .find .find-container {
   background-color: var(--secund-clr);
   max-width: 600px;
-  margin: 30px auto;
+  margin: 30px auto 50px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 7px;
 }
@@ -874,18 +912,23 @@ footer div {
   padding: 10px;
   border-radius: 7px;
   border: none;
+  background-color: #fff;
   font-size: 0.9rem;
 }
 .find .find-container .box .field input:focus,
 .find .find-container .box .field select:focus {
   outline: none;
 }
+.find .find-container .box .field small {
+  display: inline-block;
+  margin-top: 5px;
+}
 .find .find-container .box .btn {
   margin: 0;
   padding: 10px;
   background-color: var(--third-text-clr);
   color: var(--secund-clr);
-  font-size: 0.9rem;
+  font-size: 0.9rem !important;
 }
 
 .page_404 {

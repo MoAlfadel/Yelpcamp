@@ -2,10 +2,12 @@ const menuBtn = document.getElementById("menuBtn");
 const links = document.getElementById("links");
 let flashBox = document.getElementById("flash");
 let cancelFlashBtn = document.getElementById("cancelFlash");
+let bodyContainer = document.getElementById("bodyContainer");
 
 menuBtn.addEventListener("click", () => {
     menuBtn.classList.toggle("active");
     links.classList.toggle("active");
+    bodyContainer.classList.toggle("blur");
 });
 if (cancelFlashBtn)
     cancelFlashBtn.addEventListener("click", () => {

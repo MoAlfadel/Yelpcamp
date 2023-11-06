@@ -10,6 +10,29 @@ body {
     position: relative;
     font-family: "Roboto", sans-serif;
     color: var(--secund-text-clr);
+    .body-container {
+        transition: all 0.4s linear;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            transition: all 0.4s linear;
+            background-image: none;
+            z-index: 99;
+        }
+        &.blur::before {
+            display: block;
+            background-image: linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+            );
+        }
+    }
 }
 .container {
     padding: 0 15px;
@@ -134,17 +157,20 @@ header {
             }
             .links {
                 position: absolute;
-                width: 100%;
+                height: calc(100vh - 70px);
+                width: 230px;
                 top: 70px;
                 list-style-type: none;
                 z-index: 8888;
                 transition: left 0.4s ease-in-out;
                 left: -200vh;
-                background-color: var(--main-clr);
+                background-color: rgba(26, 23, 23, 0.9);
                 &.active {
                     left: 0;
                 }
                 @media (min-width: 767px) {
+                    height: fit-content;
+                    width: 100%;
                     display: flex;
                     justify-content: space-between;
                     position: relative;
@@ -166,8 +192,9 @@ header {
                         transition: opacity 0.4s linear;
                         &:hover,
                         &.active {
-                            opacity: 0.8;
+                            opacity: 0.9;
                         }
+                        font-size: 14px;
                     }
                     .icon {
                         margin-right: 5px;

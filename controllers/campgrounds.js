@@ -5,7 +5,7 @@ const User = require("../models/user");
 const ExpressError = require("../utils/ExpressError");
 module.exports.indexPage = catchAsync(async (req, res, next) => {
     const { q, page = 0 } = req.query;
-    const pageCampNumber = 5;
+    const pageLimitNumber = 5;
     let searchQueries = {};
 
     if (q) {
@@ -13,12 +13,12 @@ module.exports.indexPage = catchAsync(async (req, res, next) => {
     }
 
     const lastPageNumber = Math.ceil(
-        (await Campground.find(searchQueries)).length / pageCampNumber - 1
+        (await Campground.find(searchQueries)).length / pageLimitNumber - 1
     );
 
     const campgrounds = await Campground.find(searchQueries)
-        .skip(page * pageCampNumber)
-        .limit(pageCampNumber);
+        .skip(page * pageLimitNumber)
+        .limit(pageLimitNumber);
 
     if (page > lastPageNumber) {
         req.flash("error", "No search Result found ");
@@ -120,7 +120,7 @@ module.exports.renderEditForm = catchAsync(async (req, res) => {
 module.exports.findCampground = catchAsync(async (req, res) => {
     const { location, price, rating, page = 0 } = req.query;
     let searchQueries = {};
-    const pageCampNumber = 5;
+    const pageLimitNumber = 5;
     if (location) {
         searchQueries.location = { $regex: location, $options: "i" };
     }
@@ -130,18 +130,25 @@ module.exports.findCampground = catchAsync(async (req, res) => {
     if (price) {
         searchQueries.price = { $lte: +price };
     }
-    const lastPageNumber = Math.ceil(
-        (await Campground.find(searchQueries)).length / pageCampNumber - 1
-    );
 
-    const campgrounds = await Campground.find(searchQueries)
-        .skip(page * pageCampNumber)
-        .limit(pageCampNumber);
-
+    let campgrounds;
+    let lastPageNumber = 0;
+    // If here is search request
+    if (Object.keys(searchQueries).length >= 1) {
+        campgrounds = await Campground.find(searchQueries)
+            .skip(page * pageLimitNumber)
+            .limit(pageLimitNumber);
+        // find the last  page  number
+        lastPageNumber = Math.ceil(
+            (await Campground.find(searchQueries)).length / pageLimitNumber - 1
+        );
+    }
+    // IF Not found a results for search
     if (page > lastPageNumber) {
         req.flash("error", "No search results found");
         res.redirect("/campgrounds/find");
     } else {
+        // if found results for search
         res.render("campgrounds/find", {
             campgrounds,
             price,

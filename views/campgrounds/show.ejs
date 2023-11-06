@@ -26,20 +26,28 @@
                 <h2 class="title"><%= campground.title %></h2>
                 <p class="description"><%= campground.description %></p>
             </div>
-            <div class="location"><%= campground.location %></div>
-            <div class="price">$<%= campground.price %>/night</div>
+            <div class="location">
+                <i class="fa fa-map-marker icon"></i>
+                <%= campground.location %>
+            </div>
+            <div class="price">
+                <i class="fa fa-solid fa-dollar"></i>
+                <%= campground.price %>/night
+            </div>
+            <div class="author">
+                <i class="fa fa-paper-plane icon" aria-hidden="true"></i>
+                Submitted By <%= campground.author.username %>
+            </div>
             <div class="rating">
                 <div class="rating-container">
                     Rating : <%= campground.rating %>
-                    <i class="fa fa-star star-icon"> </i>
+                    <i class="fa fa-star icon"> </i>
                 </div>
                 <div class="reviews-number">
                     <small> <%= campground.reviews.length %> Reviews </small>
                 </div>
             </div>
-            <div class="author">
-                Submitted By <%= campground.author.username %>
-            </div>
+
             <% if( currentUser && campground.author.id === currentUser.id) {%>
             <div class="links">
                 <div class="btn btn-states">
