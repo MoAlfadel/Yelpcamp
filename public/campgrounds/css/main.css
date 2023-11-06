@@ -188,6 +188,7 @@ header nav .links-container .links {
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
+  padding-bottom: 50px;
 }
 header nav .links-container .links.active {
   left: 0;
