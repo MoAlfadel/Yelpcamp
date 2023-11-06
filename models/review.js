@@ -17,6 +17,10 @@ const reviewSchema = new Schema({
         refPath: "accountType",
         required: true,
     },
+    rating: {
+        type: Number,
+        default: 0,
+    },
 });
 
 module.exports = mongoose.model("Review", reviewSchema);

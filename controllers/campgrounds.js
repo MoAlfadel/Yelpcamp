@@ -2,20 +2,34 @@ const Campground = require("../models/campground");
 const catchAsync = require("../utils/CatchAsync");
 const { cloudinary } = require("../cloudinary/index");
 const User = require("../models/user");
+const ExpressError = require("../utils/ExpressError");
 module.exports.indexPage = catchAsync(async (req, res, next) => {
-    const { q } = req.query;
-    let campgrounds;
+    const { q, page = 0 } = req.query;
+    const pageCampNumber = 5;
+    let searchQueries = {};
+
     if (q) {
-        campgrounds = await Campground.find({
-            title: { $regex: q, $options: "i" },
-        });
-    } else if (!q) {
-        campgrounds = await Campground.find({});
+        searchQueries.title = { $regex: q, $options: "i" };
+    }
+
+    const lastPageNumber = Math.ceil(
+        (await Campground.find(searchQueries)).length / pageCampNumber - 1
+    );
+
+    const campgrounds = await Campground.find(searchQueries)
+        .skip(page * pageCampNumber)
+        .limit(pageCampNumber);
+
+    if (page > lastPageNumber) {
+        req.flash("error", "No search Result found ");
+        res.redirect("/campgrounds");
     }
     return res.render("campgrounds/index.ejs", {
         campgrounds,
         title: "All Campgrounds",
         q,
+        lastPageNumber,
+        page,
     });
 });
 
@@ -35,13 +49,12 @@ module.exports.createCampground = catchAsync(async (req, res, next) => {
     }));
     campground.author = req.user.id;
     await campground.save();
-    // console.log(campground);
     req.flash("success", "successfully made a New Campground");
     res.redirect(`/campgrounds/${campground.id}`);
 });
 
 module.exports.showCampground = catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
+    let campground = await Campground.findById(req.params.id)
         .populate({
             path: "reviews",
             populate: {
@@ -102,4 +115,41 @@ module.exports.renderEditForm = catchAsync(async (req, res) => {
         campground,
         title: "Edit campground",
     });
+});
+
+module.exports.findCampground = catchAsync(async (req, res) => {
+    const { location, price, rating, page = 0 } = req.query;
+    let searchQueries = {};
+    const pageCampNumber = 5;
+    if (location) {
+        searchQueries.location = { $regex: location, $options: "i" };
+    }
+    if (rating) {
+        searchQueries.rating = { $gte: +rating };
+    }
+    if (price) {
+        searchQueries.price = { $lte: +price };
+    }
+    const lastPageNumber = Math.ceil(
+        (await Campground.find(searchQueries)).length / pageCampNumber - 1
+    );
+
+    const campgrounds = await Campground.find(searchQueries)
+        .skip(page * pageCampNumber)
+        .limit(pageCampNumber);
+
+    if (page > lastPageNumber) {
+        req.flash("error", "No search results found");
+        res.redirect("/campgrounds/find");
+    } else {
+        res.render("campgrounds/find", {
+            campgrounds,
+            price,
+            location,
+            rating,
+            page,
+            lastPageNumber,
+            title: "Find Campgrounds",
+        });
+    }
 });

@@ -74,4 +74,30 @@
             }
         }
     }
+    .more-camps {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        margin: 50px auto 0;
+        background-color: transparent;
+        color: var(--main-clr);
+
+        .icon {
+            display: inline-block;
+            color: var(--main-clr);
+            font-size: 25px;
+            width: 25px;
+            height: 25px;
+            padding: 5px;
+            border-radius: 20px;
+            background-color: var(--secund-text-clr);
+            color: var(--secund-clr);
+        }
+        .btn {
+            cursor: default;
+            background-color: var(--secund-clr);
+            color: var(--text-clr);
+        }
+    }
 }

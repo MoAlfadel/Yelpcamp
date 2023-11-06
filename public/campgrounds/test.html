@@ -342,11 +342,9 @@
                     </div>
                 </form>
             </section> -->
-            <section class="show">
+            <!-- <section class="show">
                 <div class="campground-container">
-                    <!-- Slider container -->
                     <div class="slider">
-                        <!-- slide 1 -->
                         <div class="slide">
                             <img
                                 src="Tent_camping_along_the_Sulayr_trail_in_La_Taha,_Sierra_Nevada_National_Park_(DSCF5147).jpg"
@@ -354,12 +352,10 @@
                             />
                         </div>
 
-                        <!-- slide 2 -->
                         <div class="slide">
                             <img src="test-img.jpg" alt="" />
                         </div>
 
-                        <!-- Control buttons -->
                         <button class="slider-btn btn-next">></button>
                         <button class="slider-btn btn-prev"><</button>
                     </div>
@@ -423,7 +419,7 @@
                     </div>
                 </div>
                 <script src="js/slider.js"></script>
-            </section>
+            </section> -->
             <!-- <section class="sign login">
                 <h2 class="section-title">
                     Login
@@ -478,7 +474,7 @@
                 </div>
                 <script src="/campgrounds/js/formValidation.js"></script>
             </section> -->
-            <!-- <section class="sign register">
+           <!-- <section class="sign register">
                 <h2 class="section-title">
                     Register
                     <div class="shadow">Sign up</div>
@@ -558,6 +554,72 @@
                     <a href="/google"> Sign Up with Google </a>
                 </button>
             </section> -->
+        <section class="find">
+            <h2 class="section-title">
+                Find Campground 
+                <div class="shadow">
+                    Advanced Search
+                </div>
+            </h2>
+            <form action="">
+                <div class="find-container ">
+               <div class="box">
+                <div class="field rating">
+                    <label for="rating"> Rating  </label>
+                    <select name="rating" id="">
+                        <option value="1"> one </option>
+                        <option value="2"> 
+                            two
+                        </option>
+                        <option value="3"> 
+                            three
+                        </option>
+                        <option value="4"> 
+                            four
+                        </option>
+                        <option value="5"> 
+                            five
+                        </option>
+                    </select>
+                </div>
+                <div class="field price ">
+                    <label for="price"> price </label>
+                    <input type="Number" id="price" placeholder="price equal or less than ">
+                </div>
+               </div>
+                    <div class="box">
+                        <div class="field">
+                            <label for="location"> location </label>
+                            <input type="text"  id="location" placeholder="location">
+                        </div>
+                        <button class="btn btn-states"> Search </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section class="campgrounds">
+                <!--  display campgrounds -->
+      <% for (let campground of campgrounds ) { %>
+        <div class="campground-container">
+            <div class="image">
+                <img src="<%= campground.image.length > 0 ? campground.image[0].url
+                : ""%>" />
+            </div>
+            <div class="text">
+                <h3 class="title"><%= campground.title %></h3>
+                <p class="description"><%- campground.description %></p>
+                <p class="location">
+                    <small><%= campground.location %></small>
+                </p>
+                <button class="btn btn-states">
+                    <a href="/campgrounds/<%=campground.id %>">
+                        View <%= campground.title %></a
+                    >
+                </button>
+            </div>
+        </div>
+        <% }%>
+        </section>
         </main>
         <footer>
             <div>Made With <span>&#10084;</span> By Mo Alfadel</div>

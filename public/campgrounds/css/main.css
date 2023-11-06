@@ -264,7 +264,6 @@ header nav .links-container .links li.logoutBtn button {
   margin-bottom: 50px;
   color: var(--main-clr);
   position: relative;
-  text-transform: capitalize;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .flash.success {
@@ -530,6 +529,30 @@ footer div {
 .campgrounds .campground-container .text .location {
   color: var(--secund-text-clr);
 }
+.campgrounds .more-camps {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px auto 0;
+  background-color: transparent;
+  color: var(--main-clr);
+}
+.campgrounds .more-camps .icon {
+  display: inline-block;
+  color: var(--main-clr);
+  font-size: 25px;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: var(--secund-text-clr);
+  color: var(--secund-clr);
+}
+.campgrounds .more-camps .btn {
+  cursor: default;
+  background-color: var(--secund-clr);
+  color: var(--text-clr);
+}
 
 .new .priceField,
 .edit .priceField {
@@ -608,15 +631,24 @@ footer div {
 .show .campground-container .text .location,
 .show .campground-container .text .price,
 .show .campground-container .text .author,
-.show .campground-container .text .links {
+.show .campground-container .text .links,
+.show .campground-container .text .rating {
   border-style: solid;
   border-color: var(--secund-clr);
   border-width: 2px 0 0;
 }
 .show .campground-container .text .location,
 .show .campground-container .text .author,
-.show .campground-container .text .price {
+.show .campground-container .text .price,
+.show .campground-container .text .rating {
   padding: 10px 17px;
+}
+.show .campground-container .text .rating {
+  display: flex;
+  justify-content: space-between;
+}
+.show .campground-container .text .rating .rating-container .star-icon {
+  color: var(--main-clr);
 }
 .show .campground-container .text .links {
   display: flex;
@@ -806,4 +838,92 @@ footer div {
   left: 0;
   width: 100%;
   background-color: transparent;
+}
+
+.find .find-container {
+  background-color: var(--secund-clr);
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 7px;
+}
+.find .find-container .box {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  overflow: hidden;
+  gap: 10px;
+}
+.find .find-container .box .field {
+  flex-grow: 1;
+}
+.find .find-container .box .field.price, .find .find-container .box .field.rating {
+  min-width: 70px;
+}
+.find .find-container .box .field label {
+  display: block;
+  color: var(--third-text-clr);
+  text-transform: capitalize;
+  margin-bottom: 6px;
+}
+.find .find-container .box .field input,
+.find .find-container .box .field select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 7px;
+  border: none;
+  font-size: 0.9rem;
+}
+.find .find-container .box .field input:focus,
+.find .find-container .box .field select:focus {
+  outline: none;
+}
+.find .find-container .box .btn {
+  margin: 0;
+  padding: 10px;
+  background-color: var(--third-text-clr);
+  color: var(--secund-clr);
+  font-size: 0.9rem;
+}
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+  text-align: center;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 7px;
+}
+
+.contant_box_404 {
+  margin-top: -50px;
+  line-height: 1.6;
 }/*# sourceMappingURL=main.css.map */

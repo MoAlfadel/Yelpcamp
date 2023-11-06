@@ -15,6 +15,7 @@ const campgroundSchema = new Schema({
     title: {
         type: String,
         required: true,
+        trim: true,
     },
     price: {
         type: Number,
@@ -24,11 +25,13 @@ const campgroundSchema = new Schema({
     description: {
         type: String,
         required: true,
+        trim: true,
     },
     image: [imageSchema],
     location: {
         type: String,
         required: true,
+        trim: true,
     },
     reviews: [
         {
@@ -46,6 +49,10 @@ const campgroundSchema = new Schema({
         required: true,
         enum: ["User", "googleUser"],
     },
+    rating: {
+        type: Number,
+        default: 0,
+    },
 });
 
 campgroundSchema.post("findOneAndDelete", async (doc) => {
@@ -54,11 +61,21 @@ campgroundSchema.post("findOneAndDelete", async (doc) => {
             _id: { $in: doc.reviews },
         });
         if (doc.image.length > 0)
-            for (let img of doc.images) {
+            for (let img of doc.image) {
                 await cloudinary.uploader.destroy(img.fileName);
             }
     }
 });
+
+campgroundSchema.methods.updateRating = async function () {
+    let campgroundReviews = await Review.find({
+        _id: { $in: this.reviews },
+    });
+    const totalRating = campgroundReviews.reduce((sum, currentReview) => {
+        return sum + currentReview.rating;
+    }, 0);
+    return +(totalRating / this.reviews.length).toFixed(1) || 0;
+};
 
 const Campground = mongoose.model("Campground", campgroundSchema);
 

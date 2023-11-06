@@ -34,16 +34,28 @@
             .location,
             .price,
             .author,
-            .links {
+            .links,
+            .rating {
                 border-style: solid;
                 border-color: var(--secund-clr);
                 border-width: 2px 0 0;
             }
             .location,
             .author,
-            .price {
+            .price,
+            .rating {
                 padding: $main-gap calc($main-gap + 7px);
-                // color: var(--text-clr);
+            }
+            .rating {
+                display: flex;
+                justify-content: space-between;
+                .rating-container {
+                    .star-icon {
+                        color: var(--main-clr);
+                    }
+                }
+                .reviews-number {
+                }
             }
             .links {
                 display: flex;

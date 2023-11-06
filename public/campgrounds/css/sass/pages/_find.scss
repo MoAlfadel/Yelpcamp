@@ -1,0 +1,50 @@
+@use "../helpers/varibles" as *;
+.find {
+    .find-container {
+        background-color: var(--secund-clr);
+        max-width: 600px;
+        margin: 30px auto;
+        box-shadow: $shadow;
+        border-radius: 7px;
+        .box {
+            padding: $main-gap;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            overflow: hidden;
+            gap: $main-gap;
+            .field {
+                flex-grow: 1;
+                &.price,
+                &.rating {
+                    min-width: 70px;
+                }
+                label {
+                    display: block;
+                    color: var(--third-text-clr);
+                    text-transform: capitalize;
+                    margin-bottom: 6px;
+                }
+                input,
+                select {
+                    display: block;
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 7px;
+                    border: none;
+                    &:focus {
+                        outline: none;
+                    }
+                    font-size: 0.9rem;
+                }
+            }
+            .btn {
+                margin: 0;
+                padding: 10px;
+                background-color: var(--third-text-clr);
+                color: var(--secund-clr);
+                font-size: 0.9rem;
+            }
+        }
+    }
+}

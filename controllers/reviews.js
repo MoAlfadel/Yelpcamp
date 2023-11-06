@@ -12,6 +12,10 @@ module.exports.createReview = catchAsync(async (req, res) => {
     });
     campground.reviews.push(review);
     await review.save();
+    // -------------------------
+
+    campground.rating = await campground.updateRating();
+    // -----------------------------------
     await campground.save();
     req.flash("success", "Created New Review !");
     res.redirect(`/campgrounds/${campground.id}`);
@@ -19,10 +23,16 @@ module.exports.createReview = catchAsync(async (req, res) => {
 
 module.exports.deleteReview = catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
-    await Campground.findByIdAndUpdate(id, {
-        $pull: { reviews: reviewId },
-    });
+    const campground = await Campground.findByIdAndUpdate(
+        id,
+        {
+            $pull: { reviews: reviewId },
+        },
+        { new: true }
+    );
     await Review.findByIdAndDelete(reviewId);
+    campground.rating = await campground.updateRating();
+    await campground.save();
     req.flash("success", "Successfully Deleted Review !");
     res.redirect(`/campgrounds/${id}/`);
 });

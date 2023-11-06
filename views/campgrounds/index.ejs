@@ -20,7 +20,7 @@
     </h2>
     <% } else { %>
     <h3 class="section-title">
-        Results For <span> <%= q %> </span>
+        Results for <span> <%= q %> </span>
         <div class="shadow">search results</div>
     </h3>
     <% if(campgrounds.length === 0 ){ %>
@@ -50,4 +50,18 @@
         </div>
     </div>
     <% }%>
+    <!--  -->
+    <div class="more-camps">
+        <% if(+page < lastPageNumber) { %>
+        <a href="/campgrounds/?page=<%= +page+1 %>&q=<%= q %>">
+            <i class="fa-solid fa-angle-left icon btn-states"></i>
+        </a>
+        <% }%>
+        <div class="btn">View More campgrounds</div>
+        <% if(+page > 0) { %>
+        <a href="/campgrounds/?page=<%= +page-1 %>&q=<%= q %>">
+            <i class="fa-solid fa-angle-right icon"></i>
+        </a>
+        <% } %>
+    </div>
 </section>

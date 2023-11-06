@@ -101,17 +101,15 @@ app.use(
                 "data:",
                 "https://res.cloudinary.com/dtdiayqkt/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
                 "https://images.unsplash.com",
+                "https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif",
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
     })
 );
-// using static files
+
 app.use(express.static(path.join(__dirname, "public")));
-// using form in post data
 app.use(express.urlencoded({ extended: true }));
-// using json object in post data
-// use methods Override
 app.use(methodOverride("_method"));
 
 app.use(cookieParser());
@@ -119,15 +117,12 @@ app.use(session(sessionConfig));
 app.use(flash());
 
 app.use(mongoSanitize());
-//
-app.use(passport.initialize());
-app.use(passport.session());
-
-// use static authenticate method of model in LocalStrategy
-passport.use(new LocalStrategy(User.authenticate()));
 
 // ------------------------------------------------------------------------------------
-
+app.use(passport.initialize());
+app.use(passport.session());
+// use static authenticate method of model in LocalStrategy
+passport.use(new LocalStrategy(User.authenticate()));
 passport.use(
     new GoogleStrategy(
         {
@@ -135,12 +130,13 @@ passport.use(
             clientSecret: process.env.googleClientSecret,
             // callbackURL: "/google/redirect",
             callbackURL: "https://yelpcamp-7lhd.onrender.com/google/redirect",
-            //    "/google/redirect",
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
                 //find the user in our database
-                let user = await GoogleUser.findOne({ profileID: profile.id });
+                const user = await GoogleUser.findOne({
+                    profileID: profile.id,
+                });
                 if (user) {
                     //If user present in our database.
                     done(null, user);
@@ -163,7 +159,7 @@ passport.use(
     )
 );
 
-// used to serialize the user for the session (google)
+// used serialize the user for the session (google)
 passport.serializeUser((user, done) => {
     if (user instanceof User) {
         accountType = "User";
@@ -188,7 +184,6 @@ passport.deserializeUser((id, done) => {
 });
 
 // use static serialize and deserialize of model for passport session support
-// by local passport monogoose
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 // =----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -209,7 +204,7 @@ app.get("/", (req, res) => {
 });
 
 app.all("*", (req, res, next) => {
-    next(new ExpressError("Page not Found ", 404));
+    res.status(404).render("404", { title: "404" });
 });
 
 app.use((err, req, res, next) => {

@@ -1,0 +1,87 @@
+<% layout("/layouts/boilerplate") %>
+<section class="find">
+    <h2 class="section-title">
+        Find Campground
+        <div class="shadow">Advanced Search</div>
+    </h2>
+    <form action="/campgrounds/find" method="get">
+        <div class="find-container">
+            <div class="box">
+                <div class="field rating">
+                    <label for="rating"> Rating </label>
+                    <select name="rating" id="ratong">
+                        <% for (let i = 0 ; i <= 5 ; i++ ) {%>
+                        <option value="<%= i %>"><%= i %> star</option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="field price">
+                    <label for="price"> price </label>
+                    <input
+                        type="Number"
+                        id="price"
+                        name="price"
+                        value="<%= price %>"
+                        min="1"
+                        placeholder="price equal or less than "
+                    />
+                </div>
+            </div>
+            <div class="box">
+                <div class="field">
+                    <label for="location"> location </label>
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="location"
+                        name="location"
+                        value="<%= location %>"
+                    />
+                </div>
+                <button class="btn btn-states">Search</button>
+            </div>
+        </div>
+    </form>
+</section>
+<section class="campgrounds">
+    <% if(!campgrounds.length) {%> <% } %>
+    <!--  display campgrounds -->
+    <% for (let campground of campgrounds ) { %>
+    <div class="campground-container">
+        <div class="image">
+            <img src="<%= campground.image.length > 0 ? campground.image[0].url
+            : ""%>" />
+        </div>
+        <div class="text">
+            <h3 class="title"><%= campground.title %></h3>
+            <p class="description"><%- campground.description %></p>
+            <p class="location">
+                <small><%= campground.location %></small>
+            </p>
+            <button class="btn btn-states">
+                <a href="/campgrounds/<%=campground.id %>">
+                    View <%= campground.title %></a
+                >
+            </button>
+        </div>
+    </div>
+    <% } %>
+    <!--  -->
+    <div class="more-camps">
+        <% if(+page < lastPageNumber) { %>
+        <a
+            href="/campgrounds/find?page=<%= +page+1 %>&price=<%=price %>&location=<%= location %>&rating=<%= rating %>"
+        >
+            <i class="fa-solid fa-angle-left icon btn-states"></i>
+        </a>
+        <% }%>
+        <div class="btn">View More campgrounds</div>
+        <% if(+page > 0) { %>
+        <a
+            href="/campgrounds/find?page=<%= +page-1 %>&price=<%=price %>&location=<%= location %>&rating=<%= rating %>"
+        >
+            <i class="fa-solid fa-angle-right icon"></i>
+        </a>
+        <% } %>
+    </div>
+</section>
