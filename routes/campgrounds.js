@@ -21,7 +21,6 @@ router
         upload.array("campground-img"),
         Campgrounds.createCampground
     );
-
 // .post(upload.array("campground-img"), (req, res) => {
 //     res.send(req.files);
 //     console.log(req.body, req.files);
@@ -48,5 +47,6 @@ router.get(
     isCampgroundAuthor,
     Campgrounds.renderEditForm
 );
-
+router.get("/:id/like", isLogin, Campgrounds.likeCampground);
+router.get("/:id/dislike", Campgrounds.dislikeCampground);
 module.exports = router;

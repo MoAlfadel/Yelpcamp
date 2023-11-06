@@ -160,3 +160,35 @@ module.exports.findCampground = catchAsync(async (req, res) => {
         });
     }
 });
+
+module.exports.likeCampground = catchAsync(async (req, res) => {
+    let { id } = req.params;
+    const campground = await Campground.findById(id);
+
+    if (!campground) {
+        req.flash("error", "Cannot find that campground!");
+        return res.redirect("/campgrounds");
+    } else if (req.user.likedCampgrounds.includes(id)) {
+        req.flash("error", "Already liked this campground !");
+        return res.redirect(`/campgrounds/${id}`);
+    }
+    req.user.likedCampgrounds.push(campground);
+    await req.user.save();
+    res.redirect(`/campgrounds/${id}`);
+});
+module.exports.dislikeCampground = catchAsync(async (req, res) => {
+    let { id } = req.params;
+    const campground = await Campground.findById(id);
+
+    if (!campground) {
+        req.flash("error", "Cannot find that campground!");
+        return res.redirect("/campgrounds");
+    } else if (!req.user.likedCampgrounds.includes(id)) {
+        req.flash("error", "You don't liked this campground !");
+        return res.redirect(`/campgrounds/${id}`);
+    }
+    const campIndex = req.user.likedCampgrounds.indexOf(id);
+    req.user.likedCampgrounds.splice(campIndex, 1);
+    await req.user.save();
+    res.redirect(`/campgrounds/${id}`);
+});

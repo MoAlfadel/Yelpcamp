@@ -13,9 +13,18 @@
         color: var(--secund-clr);
         background-color: transparent;
         .links {
-            background-color: transparent;
-            @media (max-width: 750px) {
-                background-color: rgba(125, 124, 124, 0.6);
+            justify-content: start;
+            background-color: rgba(125, 124, 124, 0.815);
+            width: 100%;
+            height: fit-content;
+            @media (min-width: 767px) {
+                background-color: transparent;
+                justify-content: space-between;
+            }
+            li a {
+                @media (min-width: 767px) and (max-width: 992px) {
+                    font-size: 15px;
+                }
             }
         }
     }

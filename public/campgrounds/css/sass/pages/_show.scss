@@ -29,6 +29,24 @@
                     margin-bottom: calc($main-gap + 7px);
                     color: var(--secund-text-clr);
                     font-size: 1.4rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .like,
+                    .dislike {
+                        padding: 3px 10px;
+                        text-decoration: none;
+                        border-radius: 7px;
+                        border: 2px solid var(--positive-clr);
+                        color: var(--text-clr);
+                        font-size: 14px;
+                    }
+                    .like {
+                        border: 2px solid var(--positive-clr);
+                    }
+                    .dislike {
+                        border: 2px solid var(--negative-clr);
+                    }
                 }
                 p {
                     line-height: $line-height;

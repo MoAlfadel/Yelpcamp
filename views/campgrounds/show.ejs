@@ -23,13 +23,42 @@
         </div>
         <div class="text">
             <div class="info">
-                <h2 class="title"><%= campground.title %></h2>
+                <h2 class="title">
+                    <div class="title-content"><%= campground.title %></div>
+                    <%if(currentUser) {%>
+                    <div class="flow-container">
+                        <%
+                        if(currentUser.likedCampgrounds.includes(campground.id))
+                        {%>
+                        <a
+                            class="dislike btn-states"
+                            href="/campgrounds/<%= campground.id %>/dislike"
+                        >
+                            dislike
+                            <i class="fa-solid fa-thumbs-down"></i>
+                        </a>
+                        <% } else {%>
+                        <a
+                            href="/campgrounds/<%= campground.id %>/like"
+                            class="like"
+                        >
+                            like
+                            <i
+                                class="fa-solid fa-thumbs-up"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <% }%>
+                    </div>
+                    <% }%>
+                </h2>
                 <p class="description"><%= campground.description %></p>
             </div>
             <div class="location">
                 <i class="fa fa-map-marker icon"></i>
                 <%= campground.location %>
             </div>
+
             <div class="price">
                 <i class="fa fa-solid fa-dollar"></i>
                 <%= campground.price %>/night

@@ -28,8 +28,8 @@ body {
         &.blur::before {
             display: block;
             background-image: linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0.5)
+                rgba(0, 0, 0, 0.7),
+                rgba(0, 0, 0, 0.7)
             );
         }
     }
@@ -165,14 +165,17 @@ header {
                 transition: left 0.4s ease-in-out;
                 left: -200vh;
                 background-color: rgba(26, 23, 23, 0.9);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: start;
                 &.active {
                     left: 0;
                 }
                 @media (min-width: 767px) {
+                    flex-direction: row;
                     height: fit-content;
                     width: 100%;
-                    display: flex;
-                    justify-content: space-between;
                     position: relative;
                     top: 0;
                     left: 0;
@@ -194,7 +197,10 @@ header {
                         &.active {
                             opacity: 0.9;
                         }
-                        font-size: 14px;
+
+                        @media (min-width: 767px) and (max-width: 992px) {
+                            font-size: 12px;
+                        }
                     }
                     .icon {
                         margin-right: 5px;
@@ -205,6 +211,12 @@ header {
                             color: inherit;
                             border: none;
                             cursor: pointer;
+                            @media (min-width: 767px) and (max-width: 992px) {
+                                font-size: 12px;
+                            }
+                            &.active {
+                                opacity: 0.9;
+                            }
                         }
                     }
                 }

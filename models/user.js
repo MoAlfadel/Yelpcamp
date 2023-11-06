@@ -8,6 +8,12 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
+    likedCampgrounds: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Campground",
+        },
+    ],
 });
 
 const googleUserSchema = new Schema({
@@ -23,6 +29,12 @@ const googleUserSchema = new Schema({
         type: String,
         required: true,
     },
+    likedCampgrounds: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Campground",
+        },
+    ],
 });
 userSchema.plugin(passportLocalMongoose);
 

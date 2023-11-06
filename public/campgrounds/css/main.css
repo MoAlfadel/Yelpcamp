@@ -39,7 +39,7 @@ body .body-container::before {
 }
 body .body-container.blur::before {
   display: block;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
 }
 
 .container {
@@ -184,17 +184,20 @@ header nav .links-container .links {
   transition: left 0.4s ease-in-out;
   left: -200vh;
   background-color: rgba(26, 23, 23, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
 }
 header nav .links-container .links.active {
   left: 0;
 }
 @media (min-width: 767px) {
   header nav .links-container .links {
+    flex-direction: row;
     height: -moz-fit-content;
     height: fit-content;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     position: relative;
     top: 0;
     left: 0;
@@ -216,10 +219,14 @@ header nav .links-container .links li a {
   text-decoration: none;
   color: inherit;
   transition: opacity 0.4s linear;
-  font-size: 14px;
 }
 header nav .links-container .links li a:hover, header nav .links-container .links li a.active {
   opacity: 0.9;
+}
+@media (min-width: 767px) and (max-width: 992px) {
+  header nav .links-container .links li a {
+    font-size: 12px;
+  }
 }
 header nav .links-container .links li .icon {
   margin-right: 5px;
@@ -229,6 +236,14 @@ header nav .links-container .links li.logoutBtn button {
   color: inherit;
   border: none;
   cursor: pointer;
+}
+@media (min-width: 767px) and (max-width: 992px) {
+  header nav .links-container .links li.logoutBtn button {
+    font-size: 12px;
+  }
+}
+header nav .links-container .links li.logoutBtn button.active {
+  opacity: 0.9;
 }
 
 .btn {
@@ -655,6 +670,24 @@ footer div {
   margin-bottom: 17px;
   color: var(--secund-text-clr);
   font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.show .campground-container .text .info .title .like,
+.show .campground-container .text .info .title .dislike {
+  padding: 3px 10px;
+  text-decoration: none;
+  border-radius: 7px;
+  border: 2px solid var(--positive-clr);
+  color: var(--text-clr);
+  font-size: 14px;
+}
+.show .campground-container .text .info .title .like {
+  border: 2px solid var(--positive-clr);
+}
+.show .campground-container .text .info .title .dislike {
+  border: 2px solid var(--negative-clr);
 }
 .show .campground-container .text .info p {
   line-height: 1.6;
@@ -849,11 +882,21 @@ footer div {
   background-color: transparent;
 }
 .home-page nav.container .links {
-  background-color: transparent;
+  justify-content: start;
+  background-color: rgba(125, 124, 124, 0.815);
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
 }
-@media (max-width: 750px) {
+@media (min-width: 767px) {
   .home-page nav.container .links {
-    background-color: rgba(125, 124, 124, 0.6);
+    background-color: transparent;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 767px) and (max-width: 992px) {
+  .home-page nav.container .links li a {
+    font-size: 15px;
   }
 }
 .home-page main {
