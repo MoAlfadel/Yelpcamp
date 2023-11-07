@@ -1,0 +1,27 @@
+<% layout("/layouts/boilerplate") %>
+<section class="campgrounds liked">
+    <h3 class="section-title">
+        Liked Campground
+        <div class="shadow">campground you love it</div>
+    </h3>
+    <% if(campgrounds) {%> <%- include("../partials/campgrounds") %> <% }else
+    {%>
+
+    <div class="not-found">you do not like any campground</div>
+
+    <% } %>
+
+    <div class="more-camps">
+        <% if(+page < lastPageNumber) { %>
+        <a href="/campgrounds/liked?page=<%= +page+1 %>">
+            <i class="fa-solid fa-angle-left icon btn-states"></i>
+        </a>
+        <% }%>
+        <div class="btn">View More campgrounds</div>
+        <% if(+page > 0) { %>
+        <a href="/campgrounds/liked?page=<%= +page-1 %>">
+            <i class="fa-solid fa-angle-right icon"></i>
+        </a>
+        <% } %>
+    </div>
+</section>

@@ -29,6 +29,7 @@ router
 router.get("/new", isLogin, Campgrounds.renderNewForm);
 
 router.get("/find", Campgrounds.findCampground);
+router.get("/liked", isLogin, Campgrounds.likedCampgrounds);
 router
     .route("/:id")
     .get(Campgrounds.showCampground)

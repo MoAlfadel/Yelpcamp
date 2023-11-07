@@ -15,15 +15,13 @@ module.exports.indexPage = catchAsync(async (req, res, next) => {
     const lastPageNumber = Math.ceil(
         (await Campground.find(searchQueries)).length / pageLimitNumber - 1
     );
-
-    const campgrounds = await Campground.find(searchQueries)
-        .skip(page * pageLimitNumber)
-        .limit(pageLimitNumber);
-
     if (page > lastPageNumber) {
         req.flash("error", "No search Result found ");
         res.redirect("/campgrounds");
     }
+    const campgrounds = await Campground.find(searchQueries)
+        .skip(page * pageLimitNumber)
+        .limit(pageLimitNumber);
     return res.render("campgrounds/index.ejs", {
         campgrounds,
         title: "All Campgrounds",
@@ -134,7 +132,7 @@ module.exports.findCampground = catchAsync(async (req, res) => {
     let campgrounds;
     let lastPageNumber = 0;
     // If here is search request
-    if (Object.keys(searchQueries).length >= 1) {
+    if (Object.keys(searchQueries).length > 0) {
         campgrounds = await Campground.find(searchQueries)
             .skip(page * pageLimitNumber)
             .limit(pageLimitNumber);
@@ -143,22 +141,19 @@ module.exports.findCampground = catchAsync(async (req, res) => {
             (await Campground.find(searchQueries)).length / pageLimitNumber - 1
         );
     }
-    // IF Not found a results for search
+    // IF Not found a results for search || or user enter page number > last page number
     if (page > lastPageNumber) {
         req.flash("error", "No search results found");
-        res.redirect("/campgrounds/find");
-    } else {
-        // if found results for search
-        res.render("campgrounds/find", {
-            campgrounds,
-            price,
-            location,
-            rating,
-            page,
-            lastPageNumber,
-            title: "Find Campgrounds",
-        });
     }
+    res.render("campgrounds/find", {
+        campgrounds,
+        price,
+        location,
+        rating,
+        page,
+        lastPageNumber,
+        title: "Find Campgrounds",
+    });
 });
 
 module.exports.likeCampground = catchAsync(async (req, res) => {
@@ -191,4 +186,36 @@ module.exports.dislikeCampground = catchAsync(async (req, res) => {
     req.user.likedCampgrounds.splice(campIndex, 1);
     await req.user.save();
     res.redirect(`/campgrounds/${id}`);
+});
+module.exports.likedCampgrounds = catchAsync(async (req, res, next) => {
+    const { page = 0 } = req.query;
+    const pageLimitNumber = 5;
+    let campgrounds;
+    const queryObject = {
+        _id: { $in: req.user.likedCampgrounds },
+    };
+    let lastPageNumber = 0;
+    // if there is liked campgrounds
+    if (req.user.likedCampgrounds.length) {
+        campgrounds = await Campground.find(queryObject)
+            .skip(page * pageLimitNumber)
+            .limit(pageLimitNumber);
+        lastPageNumber = Math.ceil(
+            req.user.likedCampgrounds.length / pageLimitNumber - 1
+        );
+    } // if there is not liked campgrounds the the be below if is not return true (lastPage = 0 )
+
+    // if user enter page not found
+    if (page > lastPageNumber) {
+        req.flash("error", "No search Result  ");
+        return res.redirect("/campgrounds");
+    }
+
+    // render when found liked campgrounds or not found (put  page < lastPageNumber )
+    res.render("campgrounds/liked", {
+        campgrounds,
+        page,
+        lastPageNumber,
+        title: "liked campgrounds",
+    });
 });

@@ -58,27 +58,10 @@
 <section class="campgrounds">
     <% if(campgrounds) {%>
     <!--  display campgrounds -->
-    <% for (let campground of campgrounds ) { %>
-    <div class="campground-container">
-        <div class="image">
-            <img src="<%= campground.image.length > 0 ? campground.image[0].url
-            : ""%>" />
-        </div>
-        <div class="text">
-            <h3 class="title"><%= campground.title %></h3>
-            <p class="description"><%- campground.description %></p>
-            <p class="location">
-                <small><%= campground.location %></small>
-            </p>
-            <button class="btn btn-states">
-                <a href="/campgrounds/<%=campground.id %>">
-                    View <%= campground.title %></a
-                >
-            </button>
-        </div>
-    </div>
-    <% } %>
-    <% } %>
+    <%- include("../partials/campgrounds") %>
+    <% }  %>
+
+
     <!--  -->
     <div class="more-camps">
         <% if(+page < lastPageNumber) { %>

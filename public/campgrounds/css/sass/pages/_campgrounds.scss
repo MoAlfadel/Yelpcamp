@@ -27,11 +27,13 @@
         font-weight: bold;
         text-transform: capitalize;
         text-align: center;
+        padding: 20px;
         .fa-solid {
             font-weight: bold;
             font-size: 3rem;
             color: var(--negative-clr);
         }
+        box-shadow: $shadow;
     }
     .campground-container {
         display: flex;
