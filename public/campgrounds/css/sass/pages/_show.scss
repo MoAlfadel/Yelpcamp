@@ -21,7 +21,7 @@
             width: 100%;
         }
         .text {
-            .info {
+            .title-description-info {
                 color: var(--secund-text-clr);
                 padding: calc($main-gap + 7px);
 
@@ -29,9 +29,42 @@
                     margin-bottom: calc($main-gap + 7px);
                     color: var(--secund-text-clr);
                     font-size: 1.4rem;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
+                }
+                p {
+                    line-height: $line-height;
+                }
+            }
+
+            .info-box,
+            .links {
+                border-style: solid;
+                border-color: var(--secund-clr);
+                border-width: 2px 0 0;
+            }
+            .info-box {
+                padding: $main-gap calc($main-gap + 7px);
+                .icon {
+                    color: var(--text-clr);
+                }
+            }
+            .author {
+                color: var(--text-clr);
+            }
+            .rating {
+                display: flex;
+                justify-content: space-between;
+                color: var(--text-clr);
+                .reviews-number {
+                }
+            }
+            .likes {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .likes-number {
+                }
+                .like-dislike-container {
                     .like,
                     .dislike {
                         padding: 3px 10px;
@@ -47,37 +80,6 @@
                     .dislike {
                         border: 2px solid var(--negative-clr);
                     }
-                }
-                p {
-                    line-height: $line-height;
-                }
-            }
-            .author {
-                color: var(--text-clr);
-            }
-            .location,
-            .price,
-            .author,
-            .links,
-            .rating {
-                border-style: solid;
-                border-color: var(--secund-clr);
-                border-width: 2px 0 0;
-            }
-            .location,
-            .author,
-            .price,
-            .rating {
-                padding: $main-gap calc($main-gap + 7px);
-                .icon {
-                    color: var(--text-clr);
-                }
-            }
-            .rating {
-                display: flex;
-                justify-content: space-between;
-                color: var(--text-clr);
-                .reviews-number {
                 }
             }
             .links {

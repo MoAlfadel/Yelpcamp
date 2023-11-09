@@ -22,52 +22,26 @@
             <% } }%>
         </div>
         <div class="text">
-            <div class="info">
+            <div class="title-description-info">
                 <h2 class="title">
                     <div class="title-content"><%= campground.title %></div>
-                    <%if(currentUser) {%>
-                    <div class="flow-container">
-                        <%
-                        if(currentUser.likedCampgrounds.includes(campground.id))
-                        {%>
-                        <a
-                            class="dislike btn-states"
-                            href="/campgrounds/<%= campground.id %>/dislike"
-                        >
-                            dislike
-                            <i class="fa-solid fa-thumbs-down"></i>
-                        </a>
-                        <% } else {%>
-                        <a
-                            href="/campgrounds/<%= campground.id %>/like"
-                            class="like"
-                        >
-                            like
-                            <i
-                                class="fa-solid fa-thumbs-up"
-                                aria-hidden="true"
-                            ></i>
-                        </a>
-                        <% }%>
-                    </div>
-                    <% }%>
                 </h2>
                 <p class="description"><%= campground.description %></p>
             </div>
-            <div class="location">
+            <div class="info-box location">
                 <i class="fa fa-map-marker icon"></i>
                 <%= campground.location %>
             </div>
 
-            <div class="price">
-                <i class="fa fa-solid fa-dollar"></i>
+            <div class="info-box price">
+                <i class="fa fa-solid fa-dollar icon"></i>
                 <%= campground.price %>/night
             </div>
-            <div class="author">
+            <div class="info-box author">
                 <i class="fa fa-paper-plane icon" aria-hidden="true"></i>
                 Submitted By <%= campground.author.username %>
             </div>
-            <div class="rating">
+            <div class="info-box rating">
                 <div class="rating-container">
                     Rating : <%= campground.rating %>
                     <i class="fa fa-star icon"> </i>
@@ -76,7 +50,32 @@
                     <small> <%= campground.reviews.length %> Reviews </small>
                 </div>
             </div>
-
+            <div class="info-box likes">
+                <div class="likes-number">
+                    <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i> <%=
+                    campground.likesNumber %>
+                </div>
+                <div class="like-dislike-container">
+                    <% if(currentUser.likedCampgrounds.includes(campground.id))
+                    {%>
+                    <a
+                        class="dislike btn-states"
+                        href="/campgrounds/<%= campground.id %>/dislike"
+                    >
+                        dislike
+                        <i class="fa-solid fa-thumbs-down"></i>
+                    </a>
+                    <% } else {%>
+                    <a
+                        href="/campgrounds/<%= campground.id %>/like"
+                        class="like btn-states"
+                    >
+                        like
+                        <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i>
+                    </a>
+                    <% }%>
+                </div>
+            </div>
             <% if( currentUser && campground.author.id === currentUser.id) {%>
             <div class="links">
                 <div class="btn btn-states">

@@ -53,6 +53,11 @@ const campgroundSchema = new Schema({
         type: Number,
         default: 0,
     },
+    likesNumber: {
+        type: Number,
+        min: 0,
+        default: 0,
+    },
 });
 
 campgroundSchema.post("findOneAndDelete", async (doc) => {

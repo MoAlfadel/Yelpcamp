@@ -666,20 +666,45 @@ footer div {
   display: block;
   width: 100%;
 }
-.show .campground-container .text .info {
+.show .campground-container .text .title-description-info {
   color: var(--secund-text-clr);
   padding: 17px;
 }
-.show .campground-container .text .info .title {
+.show .campground-container .text .title-description-info .title {
   margin-bottom: 17px;
   color: var(--secund-text-clr);
   font-size: 1.4rem;
+}
+.show .campground-container .text .title-description-info p {
+  line-height: 1.6;
+}
+.show .campground-container .text .info-box,
+.show .campground-container .text .links {
+  border-style: solid;
+  border-color: var(--secund-clr);
+  border-width: 2px 0 0;
+}
+.show .campground-container .text .info-box {
+  padding: 10px 17px;
+}
+.show .campground-container .text .info-box .icon {
+  color: var(--text-clr);
+}
+.show .campground-container .text .author {
+  color: var(--text-clr);
+}
+.show .campground-container .text .rating {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-clr);
+}
+.show .campground-container .text .likes {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.show .campground-container .text .info .title .like,
-.show .campground-container .text .info .title .dislike {
+.show .campground-container .text .likes .like-dislike-container .like,
+.show .campground-container .text .likes .like-dislike-container .dislike {
   padding: 3px 10px;
   text-decoration: none;
   border-radius: 7px;
@@ -687,43 +712,11 @@ footer div {
   color: var(--text-clr);
   font-size: 14px;
 }
-.show .campground-container .text .info .title .like {
+.show .campground-container .text .likes .like-dislike-container .like {
   border: 2px solid var(--positive-clr);
 }
-.show .campground-container .text .info .title .dislike {
+.show .campground-container .text .likes .like-dislike-container .dislike {
   border: 2px solid var(--negative-clr);
-}
-.show .campground-container .text .info p {
-  line-height: 1.6;
-}
-.show .campground-container .text .author {
-  color: var(--text-clr);
-}
-.show .campground-container .text .location,
-.show .campground-container .text .price,
-.show .campground-container .text .author,
-.show .campground-container .text .links,
-.show .campground-container .text .rating {
-  border-style: solid;
-  border-color: var(--secund-clr);
-  border-width: 2px 0 0;
-}
-.show .campground-container .text .location,
-.show .campground-container .text .author,
-.show .campground-container .text .price,
-.show .campground-container .text .rating {
-  padding: 10px 17px;
-}
-.show .campground-container .text .location .icon,
-.show .campground-container .text .author .icon,
-.show .campground-container .text .price .icon,
-.show .campground-container .text .rating .icon {
-  color: var(--text-clr);
-}
-.show .campground-container .text .rating {
-  display: flex;
-  justify-content: space-between;
-  color: var(--text-clr);
 }
 .show .campground-container .text .links {
   display: flex;
@@ -891,6 +884,7 @@ footer div {
   width: 100%;
   height: -moz-fit-content;
   height: fit-content;
+  padding-bottom: 0;
 }
 @media (min-width: 767px) {
   .home-page nav.container .links {

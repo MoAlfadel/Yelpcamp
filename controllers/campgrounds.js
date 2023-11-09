@@ -167,7 +167,9 @@ module.exports.likeCampground = catchAsync(async (req, res) => {
         req.flash("error", "Already liked this campground !");
         return res.redirect(`/campgrounds/${id}`);
     }
+    campground.likesNumber++;
     req.user.likedCampgrounds.push(campground);
+    await campground.save();
     await req.user.save();
     res.redirect(`/campgrounds/${id}`);
 });
@@ -182,8 +184,11 @@ module.exports.dislikeCampground = catchAsync(async (req, res) => {
         req.flash("error", "You don't liked this campground !");
         return res.redirect(`/campgrounds/${id}`);
     }
+
+    campground.likesNumber--;
     const campIndex = req.user.likedCampgrounds.indexOf(id);
     req.user.likedCampgrounds.splice(campIndex, 1);
+    await campground.save();
     await req.user.save();
     res.redirect(`/campgrounds/${id}`);
 });
