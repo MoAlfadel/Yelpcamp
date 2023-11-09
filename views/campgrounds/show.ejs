@@ -55,6 +55,7 @@
                     <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i> <%=
                     campground.likesNumber %>
                 </div>
+                <% if(currentUser) {%>
                 <div class="like-dislike-container">
                     <% if(currentUser.likedCampgrounds.includes(campground.id))
                     {%>
@@ -75,6 +76,7 @@
                     </a>
                     <% }%>
                 </div>
+                <% } %>
             </div>
             <% if( currentUser && campground.author.id === currentUser.id) {%>
             <div class="links">
