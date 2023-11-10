@@ -134,7 +134,7 @@ passport.use(
         async (accessToken, refreshToken, profile, done) => {
             try {
                 //find the user in our database
-                const user = await GoogleUser.findOne({
+                let user = await GoogleUser.findOne({
                     profileID: profile.id,
                 });
                 if (user) {
