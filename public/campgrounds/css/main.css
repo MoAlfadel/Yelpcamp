@@ -642,13 +642,13 @@ footer div {
 }
 
 @media (min-width: 762px) {
-  .show {
+  .show .show-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
 }
-.show .campground-container {
+.show .show-container .campground-container {
   border: 2px solid var(--secund-clr);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-bottom: 20px;
@@ -656,55 +656,55 @@ footer div {
   height: fit-content;
 }
 @media (min-width: 762px) {
-  .show .campground-container {
+  .show .show-container .campground-container {
     position: sticky;
     left: 0;
     top: 90px;
   }
 }
-.show .campground-container img {
+.show .show-container .campground-container img {
   display: block;
   width: 100%;
 }
-.show .campground-container .text .title-description-info {
+.show .show-container .campground-container .text .title-description-info {
   color: var(--secund-text-clr);
   padding: 17px;
 }
-.show .campground-container .text .title-description-info .title {
+.show .show-container .campground-container .text .title-description-info .title {
   margin-bottom: 17px;
   color: var(--secund-text-clr);
   font-size: 1.4rem;
 }
-.show .campground-container .text .title-description-info p {
+.show .show-container .campground-container .text .title-description-info p {
   line-height: 1.6;
 }
-.show .campground-container .text .info-box,
-.show .campground-container .text .links {
+.show .show-container .campground-container .text .info-box,
+.show .show-container .campground-container .text .links {
   border-style: solid;
   border-color: var(--secund-clr);
   border-width: 2px 0 0;
 }
-.show .campground-container .text .info-box {
+.show .show-container .campground-container .text .info-box {
   padding: 10px 17px;
 }
-.show .campground-container .text .info-box .icon {
+.show .show-container .campground-container .text .info-box .icon {
   color: var(--text-clr);
 }
-.show .campground-container .text .author {
+.show .show-container .campground-container .text .author {
   color: var(--text-clr);
 }
-.show .campground-container .text .rating {
+.show .show-container .campground-container .text .rating {
   display: flex;
   justify-content: space-between;
   color: var(--text-clr);
 }
-.show .campground-container .text .likes {
+.show .show-container .campground-container .text .likes {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.show .campground-container .text .likes .like-dislike-container .like,
-.show .campground-container .text .likes .like-dislike-container .dislike {
+.show .show-container .campground-container .text .likes .like-dislike-container .like,
+.show .show-container .campground-container .text .likes .like-dislike-container .dislike {
   padding: 3px 10px;
   text-decoration: none;
   border-radius: 7px;
@@ -712,42 +712,42 @@ footer div {
   color: var(--text-clr);
   font-size: 14px;
 }
-.show .campground-container .text .likes .like-dislike-container .like {
+.show .show-container .campground-container .text .likes .like-dislike-container .like {
   border: 2px solid var(--positive-clr);
 }
-.show .campground-container .text .likes .like-dislike-container .dislike {
+.show .show-container .campground-container .text .likes .like-dislike-container .dislike {
   border: 2px solid var(--negative-clr);
 }
-.show .campground-container .text .links {
+.show .show-container .campground-container .text .links {
   display: flex;
   align-items: center;
   padding: 17px;
   gap: 10px;
 }
-.show .campground-container .text .links .btn {
+.show .show-container .campground-container .text .links .btn {
   margin: 0;
 }
-.show .review-container {
+.show .show-container .review-container {
   margin-top: 30px;
 }
-.show .review-container .add-review .field {
+.show .show-container .review-container .add-review .field {
   padding: initial;
   margin-top: -10px;
 }
-.show .review-container .add-review .btn {
+.show .show-container .review-container .add-review .btn {
   margin-top: -20px;
 }
-.show .review-container .reviews-display .review-box {
+.show .show-container .review-container .reviews-display .review-box {
   border: 2px solid var(--secund-clr);
   padding: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   line-height: 1.6;
   margin-bottom: 10px;
 }
-.show .review-container .reviews-display .review-box .author {
+.show .show-container .review-container .reviews-display .review-box .author {
   color: var(--text-clr);
 }
-.show .review-container .reviews-display .review-box .author span {
+.show .show-container .review-container .reviews-display .review-box .author span {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -758,10 +758,10 @@ footer div {
   align-items: center;
   margin-right: 10px;
 }
-.show .review-container .reviews-display .review-box .starability-result {
+.show .show-container .review-container .reviews-display .review-box .starability-result {
   margin: 10px 0;
 }
-.show .review-container .reviews-display .review-box .body span {
+.show .show-container .review-container .reviews-display .review-box .body span {
   color: var(--text-clr);
 }
 

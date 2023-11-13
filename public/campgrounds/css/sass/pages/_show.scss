@@ -1,139 +1,142 @@
 @use "../helpers/varibles" as *;
 .show {
-    @media (min-width: 762px) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: calc($main-gap * 2);
-    }
-    .campground-container {
-        border: 2px solid var(--secund-clr);
-        box-shadow: $shadow;
-        margin-bottom: calc($main-gap * 2);
-        height: fit-content;
+    .show-container {
         @media (min-width: 762px) {
-            position: sticky;
-            left: 0;
-            top: 90px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc($main-gap * 2);
         }
 
-        img {
-            display: block;
-            width: 100%;
-        }
-        .text {
-            .title-description-info {
-                color: var(--secund-text-clr);
-                padding: calc($main-gap + 7px);
+        .campground-container {
+            border: 2px solid var(--secund-clr);
+            box-shadow: $shadow;
+            margin-bottom: calc($main-gap * 2);
+            height: fit-content;
+            @media (min-width: 762px) {
+                position: sticky;
+                left: 0;
+                top: 90px;
+            }
 
-                .title {
-                    margin-bottom: calc($main-gap + 7px);
+            img {
+                display: block;
+                width: 100%;
+            }
+            .text {
+                .title-description-info {
                     color: var(--secund-text-clr);
-                    font-size: 1.4rem;
-                }
-                p {
-                    line-height: $line-height;
-                }
-            }
+                    padding: calc($main-gap + 7px);
 
-            .info-box,
-            .links {
-                border-style: solid;
-                border-color: var(--secund-clr);
-                border-width: 2px 0 0;
-            }
-            .info-box {
-                padding: $main-gap calc($main-gap + 7px);
-                .icon {
-                    color: var(--text-clr);
+                    .title {
+                        margin-bottom: calc($main-gap + 7px);
+                        color: var(--secund-text-clr);
+                        font-size: 1.4rem;
+                    }
+                    p {
+                        line-height: $line-height;
+                    }
                 }
-            }
-            .author {
-                color: var(--text-clr);
-            }
-            .rating {
-                display: flex;
-                justify-content: space-between;
-                color: var(--text-clr);
-                .reviews-number {
-                }
-            }
-            .likes {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
 
-                .likes-number {
+                .info-box,
+                .links {
+                    border-style: solid;
+                    border-color: var(--secund-clr);
+                    border-width: 2px 0 0;
                 }
-                .like-dislike-container {
-                    .like,
-                    .dislike {
-                        padding: 3px 10px;
-                        text-decoration: none;
-                        border-radius: 7px;
-                        border: 2px solid var(--positive-clr);
+                .info-box {
+                    padding: $main-gap calc($main-gap + 7px);
+                    .icon {
                         color: var(--text-clr);
-                        font-size: 14px;
-                    }
-                    .like {
-                        border: 2px solid var(--positive-clr);
-                    }
-                    .dislike {
-                        border: 2px solid var(--negative-clr);
                     }
                 }
-            }
-            .links {
-                display: flex;
-                align-items: center;
-                padding: calc($main-gap + 7px);
-                gap: $main-gap;
-                .btn {
-                    margin: 0;
-                }
-            }
-        }
-    }
-
-    .review-container {
-        margin-top: 30px;
-        .add-review {
-            .field {
-                padding: initial;
-                margin-top: -10px;
-            }
-            // border: 2px solid #eee;
-            .btn {
-                margin-top: -20px;
-            }
-        }
-        .reviews-display {
-            .review-box {
-                border: 2px solid var(--secund-clr);
-                padding: $main-gap;
-                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-                line-height: $line-height;
-                margin-bottom: $main-gap;
                 .author {
                     color: var(--text-clr);
-                    span {
-                        // display: inline-block;
-                        width: 30px;
-                        height: 30px;
-                        border-radius: 50%;
-                        background-color: var(--third-clr);
-                        color: var(--main-clr);
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        margin-right: 10px;
+                }
+                .rating {
+                    display: flex;
+                    justify-content: space-between;
+                    color: var(--text-clr);
+                    .reviews-number {
                     }
                 }
-                .starability-result {
-                    margin: 10px 0;
+                .likes {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .likes-number {
+                    }
+                    .like-dislike-container {
+                        .like,
+                        .dislike {
+                            padding: 3px 10px;
+                            text-decoration: none;
+                            border-radius: 7px;
+                            border: 2px solid var(--positive-clr);
+                            color: var(--text-clr);
+                            font-size: 14px;
+                        }
+                        .like {
+                            border: 2px solid var(--positive-clr);
+                        }
+                        .dislike {
+                            border: 2px solid var(--negative-clr);
+                        }
+                    }
                 }
-                .body {
-                    span {
+                .links {
+                    display: flex;
+                    align-items: center;
+                    padding: calc($main-gap + 7px);
+                    gap: $main-gap;
+                    .btn {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        .review-container {
+            margin-top: 30px;
+            .add-review {
+                .field {
+                    padding: initial;
+                    margin-top: -10px;
+                }
+                // border: 2px solid #eee;
+                .btn {
+                    margin-top: -20px;
+                }
+            }
+            .reviews-display {
+                .review-box {
+                    border: 2px solid var(--secund-clr);
+                    padding: $main-gap;
+                    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                    line-height: $line-height;
+                    margin-bottom: $main-gap;
+                    .author {
                         color: var(--text-clr);
+                        span {
+                            // display: inline-block;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            background-color: var(--third-clr);
+                            color: var(--main-clr);
+                            display: inline-flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-right: 10px;
+                        }
+                    }
+                    .starability-result {
+                        margin: 10px 0;
+                    }
+                    .body {
+                        span {
+                            color: var(--text-clr);
+                        }
                     }
                 }
             }

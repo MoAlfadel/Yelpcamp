@@ -52,13 +52,15 @@
                         </div>
                         <div>
                             <li class="login"><a href="/login"> <a href="#">
-                                <i class="fa icon fa-sign-in" aria-hidden="true"></i>  login</a></li>
+                                <i class="fa icon fa-sign-in" aria-hidden="true"></i>  login</a>
+                            </li>
                             <li class="login">
                                 <a href="/register"> 
                                     <i class="fa icon fa-sign-in" aria-hidden="true"></i> 
-                                    register</a>
+                                    register </a>
                             </li>
-                            <li class="login"><a href="/logout"> <i class=" fa icon fa-sign-out" aria-hidden="true"></i> logout</a></li>
+                            <li class="login"><a href="/logout"> <i class=" fa icon fa-sign-out" aria-hidden="true"></i> logout</a>
+                            </li>
                         </div>
                     </ul>
                 </div>
@@ -554,7 +556,7 @@
                     <a href="/google"> Sign Up with Google </a>
                 </button>
             </section> -->
-        <section class="find">
+        <!-- <section class="find">
             <h2 class="section-title">
                 Find Campground 
                 <div class="shadow">
@@ -596,35 +598,26 @@
                     </div>
                 </div>
             </form>
-        </section>
-        <section class="campgrounds">
-                <!--  display campgrounds -->
-      <% for (let campground of campgrounds ) { %>
-        <div class="campground-container">
-            <div class="image">
-                <img src="<%= campground.image.length > 0 ? campground.image[0].url
-                : ""%>" />
-            </div>
-            <div class="text">
-                <h3 class="title"><%= campground.title %></h3>
-                <p class="description"><%- campground.description %></p>
-                <p class="location">
-                    <small><%= campground.location %></small>
-                </p>
-                <button class="btn btn-states">
-                    <a href="/campgrounds/<%=campground.id %>">
-                        View <%= campground.title %></a
-                    >
-                </button>
-            </div>
-        </div>
-        <% }%>
-        </section>
+        </section> -->
+         <div id="map"> </div>
         </main>
         <footer>
             <div>Made With <span>&#10084;</span> By Mo Alfadel</div>
             <div>&COPY; YelpCamp 2023</div>
         </footer>
+        <script>
+             <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+         <script>
+            var map = L.map('map').setView([51.505, -0.09], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+        
+        </script>
+        </script>
         <script src="js/main.js"></script>
         <script src="js/all.min.js"></script>
         <script src="js/formValidation.js"></script>

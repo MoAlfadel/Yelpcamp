@@ -2,7 +2,7 @@ const { User } = require("../models/user");
 module.exports.renderRegisterForm = (req, res) => {
     res.render("users/register", { title: "register" });
 };
-module.exports.registerUser = catchAsync(async (req, res) => {
+module.exports.registerUser = catchAsync(async (req, res, next) => {
     try {
         const { username, password, email } = req.body;
         const newUser = new User({ username, email });

@@ -1,201 +1,227 @@
 <% layout("/layouts/boilerplate") %>
 <link rel="stylesheet" href="/campgrounds/css/stars.css" />
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+/>
 
 <section class="show">
-    <div class="campground-container">
-        <!-- Slider container -->
-        <div class="slider">
-            <%if(campground.image.length > 0){ for ( let img of
-            campground.image) { %>
-            <div class="slide">
-                <img src="<%= img.url %>" alt="" />
+    <div class="show-container">
+        <div class="campground-container">
+            <!-- Slider container -->
+            <div class="slider">
+                <%if(campground.image.length > 0){ for ( let img of
+                campground.image) { %>
+                <div class="slide">
+                    <img src="<%= img.url %>" alt="" />
+                </div>
+                <% } %>
+                <!-- Control buttons -->
+                <% if(campground.image.length > 1 ){ %>
+                <button class="slider-btn btn-next">
+                    <i class="fa-solid fa-angle-right"></i>
+                </button>
+                <button class="slider-btn btn-prev">
+                    <i class="fa-solid fa-angle-left"></i>
+                </button>
+                <% } }%>
             </div>
-            <% } %>
-            <!-- Control buttons -->
-            <% if(campground.image.length > 1 ){ %>
-            <button class="slider-btn btn-next">
-                <i class="fa-solid fa-angle-right"></i>
-            </button>
-            <button class="slider-btn btn-prev">
-                <i class="fa-solid fa-angle-left"></i>
-            </button>
-            <% } }%>
-        </div>
-        <div class="text">
-            <div class="title-description-info">
-                <h2 class="title">
-                    <div class="title-content"><%= campground.title %></div>
-                </h2>
-                <p class="description"><%= campground.description %></p>
-            </div>
-            <div class="info-box location">
-                <i class="fa fa-map-marker icon"></i>
-                <%= campground.location %>
-            </div>
+            <div class="text">
+                <div class="title-description-info">
+                    <h2 class="title">
+                        <div class="title-content"><%= campground.title %></div>
+                    </h2>
+                    <p class="description"><%= campground.description %></p>
+                </div>
+                <div class="info-box location">
+                    <i class="fa fa-map-marker icon"></i>
+                    <%= campground.location %>
+                </div>
 
-            <div class="info-box price">
-                <i class="fa fa-solid fa-dollar icon"></i>
-                <%= campground.price %>/night
-            </div>
-            <div class="info-box author">
-                <i class="fa fa-paper-plane icon" aria-hidden="true"></i>
-                Submitted By <%= campground.author.username %>
-            </div>
-            <div class="info-box rating">
-                <div class="rating-container">
-                    Rating : <%= campground.rating %>
-                    <i class="fa fa-star icon"> </i>
+                <div class="info-box price">
+                    <i class="fa fa-solid fa-dollar icon"></i>
+                    <%= campground.price %>/night
                 </div>
-                <div class="reviews-number">
-                    <small> <%= campground.reviews.length %> Reviews </small>
+                <div class="info-box author">
+                    <i class="fa fa-paper-plane icon" aria-hidden="true"></i>
+                    Submitted By <%= campground.author.username %>
                 </div>
-            </div>
-            <div class="info-box likes">
-                <div class="likes-number">
-                    <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i> <%=
-                    campground.likesNumber %>
+                <div class="info-box rating">
+                    <div class="rating-container">
+                        Rating : <%= campground.rating %>
+                        <i class="fa fa-star icon"> </i>
+                    </div>
+                    <div class="reviews-number">
+                        <small>
+                            <%= campground.reviews.length %> Reviews
+                        </small>
+                    </div>
                 </div>
-                <% if(currentUser) {%>
-                <div class="like-dislike-container">
-                    <% if(currentUser.likedCampgrounds.includes(campground.id))
-                    {%>
-                    <a
-                        class="dislike btn-states"
-                        href="/campgrounds/<%= campground.id %>/dislike"
-                    >
-                        dislike
-                        <i class="fa-solid fa-thumbs-down"></i>
-                    </a>
-                    <% } else {%>
-                    <a
-                        href="/campgrounds/<%= campground.id %>/like"
-                        class="like btn-states"
-                    >
-                        like
+                <div class="info-box likes">
+                    <div class="likes-number">
                         <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i>
-                    </a>
-                    <% }%>
+                        <%= campground.likesNumber %>
+                    </div>
+                    <% if(currentUser) {%>
+                    <div class="like-dislike-container">
+                        <%
+                        if(currentUser.likedCampgrounds.includes(campground.id))
+                        {%>
+                        <a
+                            class="dislike btn-states"
+                            href="/campgrounds/<%= campground.id %>/dislike"
+                        >
+                            dislike
+                            <i class="fa-solid fa-thumbs-down"></i>
+                        </a>
+                        <% } else {%>
+                        <a
+                            href="/campgrounds/<%= campground.id %>/like"
+                            class="like btn-states"
+                        >
+                            like
+                            <i
+                                class="fa-solid fa-thumbs-up"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <% }%>
+                    </div>
+                    <% } %>
+                </div>
+                <% if( currentUser && campground.author.id === currentUser.id)
+                {%>
+                <div class="links">
+                    <div class="btn btn-states">
+                        <a href="/campgrounds/<%=campground.id %>/edit">edit</a>
+                    </div>
+                    <form
+                        action="/campgrounds/<%=campground.id%>?_method=delete"
+                        method="post"
+                    >
+                        <button class="btn danger btn-states">Delete</button>
+                    </form>
                 </div>
                 <% } %>
             </div>
-            <% if( currentUser && campground.author.id === currentUser.id) {%>
-            <div class="links">
-                <div class="btn btn-states">
-                    <a href="/campgrounds/<%=campground.id %>/edit">edit</a>
-                </div>
-                <form
-                    action="/campgrounds/<%=campground.id%>?_method=delete"
-                    method="post"
-                >
-                    <button class="btn danger btn-states">Delete</button>
-                </form>
-            </div>
-            <% } %>
         </div>
-    </div>
-    <div class="review-container">
-        <% if(currentUser) { %>
-        <form
-            action="/campgrounds/<%=campground.id %>/reviews"
-            method="post"
-            class="form-style add-review"
-            novalidate
-            id="form"
-        >
-            <h3 class="section-title">
-                Leave Review
-                <div class="shadow">interact</div>
-            </h3>
-            <fieldset class="starability-basic">
-                <input
-                    type="radio"
-                    id="no-rate"
-                    class="input-no-rate"
-                    name="review[rating]"
-                    value="1"
-                    checked
-                    aria-label="No rating."
-                />
-                <input
-                    type="radio"
-                    id="first-rate1"
-                    name="review[rating]"
-                    value="1"
-                />
-                <label for="first-rate1" title="Terrible">1 star</label>
-                <input
-                    type="radio"
-                    id="first-rate2"
-                    name="review[rating]"
-                    value="2"
-                />
-                <label for="first-rate2" title="Not good">2 stars</label>
-                <input
-                    type="radio"
-                    id="first-rate3"
-                    name="review[rating]"
-                    value="3"
-                />
-                <label for="first-rate3" title="Average">3 stars</label>
-                <input
-                    type="radio"
-                    id="first-rate4"
-                    name="review[rating]"
-                    value="4"
-                />
-                <label for="first-rate4" title="Very good">4 stars</label>
-                <input
-                    type="radio"
-                    id="first-rate5"
-                    name="review[rating]"
-                    value="5"
-                />
-                <label for="first-rate5" title="Amazing">5 stars</label>
-            </fieldset>
-            <div class="field">
-                <label for="body">Review </label>
-                <textarea
-                    name="review[body]"
-                    id="body"
-                    cols="30"
-                    rows="3"
-                ></textarea>
-                <i class="fa-regular fa-circle-check bass icon"></i>
-                <i class="fa-regular fa-exclamation-circle error icon"></i>
-                <small> it is look good </small>
-            </div>
-            <button class="btn positive btn-states">add</button>
-        </form>
-        <script src="/campgrounds/js/formValidation.js"></script>
-        <% } %>
-        <div class="reviews-display">
-            <% if(campground.reviews.length > 0) {%>
-            <h3 class="section-title">
-                Reviews
-                <div class="shadow">interact</div>
-            </h3>
-            <% } %> <% for (let review of campground.reviews) {%>
-            <div class="review-box">
-                <h4 class="author">
-                    <span> <%= review.author.username[0] %></span><%=
-                    review.author.username %>
-                </h4>
-                <p class="starability-result" data-rating="<%=review.rating%>">
-                    Rated :<%= review.rating %> stars
-                </p>
-                <p class="body">Review : <span> <%= review.body %></span></p>
-                <% if( currentUser && review.author.id === currentUser.id) {%>
-                <form
-                    action="/campgrounds/<%=campground.id%>/reviews/<%=review.id%>?_method=delete"
-                    method="post"
-                    class=""
-                >
-                    <button class="btn danger">Delete</button>
-                </form>
+        <div class="review-container">
+            <% if(currentUser) { %>
+            <form
+                action="/campgrounds/<%=campground.id %>/reviews"
+                method="post"
+                class="form-style add-review"
+                novalidate
+                id="form"
+            >
+                <h3 class="section-title">
+                    Leave Review
+                    <div class="shadow">interact</div>
+                </h3>
+                <fieldset class="starability-basic">
+                    <input
+                        type="radio"
+                        id="no-rate"
+                        class="input-no-rate"
+                        name="review[rating]"
+                        value="1"
+                        checked
+                        aria-label="No rating."
+                    />
+                    <input
+                        type="radio"
+                        id="first-rate1"
+                        name="review[rating]"
+                        value="1"
+                    />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input
+                        type="radio"
+                        id="first-rate2"
+                        name="review[rating]"
+                        value="2"
+                    />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input
+                        type="radio"
+                        id="first-rate3"
+                        name="review[rating]"
+                        value="3"
+                    />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input
+                        type="radio"
+                        id="first-rate4"
+                        name="review[rating]"
+                        value="4"
+                    />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input
+                        type="radio"
+                        id="first-rate5"
+                        name="review[rating]"
+                        value="5"
+                    />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+                <div class="field">
+                    <label for="body">Review </label>
+                    <textarea
+                        name="review[body]"
+                        id="body"
+                        cols="30"
+                        rows="3"
+                    ></textarea>
+                    <i class="fa-regular fa-circle-check bass icon"></i>
+                    <i class="fa-regular fa-exclamation-circle error icon"></i>
+                    <small> it is look good </small>
+                </div>
+                <button class="btn positive btn-states">add</button>
+            </form>
+            <script src="/campgrounds/js/formValidation.js"></script>
+            <% } %>
+            <div class="reviews-display">
+                <% if(campground.reviews.length > 0) {%>
+                <h3 class="section-title">
+                    Reviews
+                    <div class="shadow">interact</div>
+                </h3>
+                <% } %> <% for (let review of campground.reviews) {%>
+                <div class="review-box">
+                    <h4 class="author">
+                        <span> <%= review.author.username[0] %></span><%=
+                        review.author.username %>
+                    </h4>
+                    <p
+                        class="starability-result"
+                        data-rating="<%=review.rating%>"
+                    >
+                        Rated :<%= review.rating %> stars
+                    </p>
+                    <p class="body">
+                        Review : <span> <%= review.body %></span>
+                    </p>
+                    <% if( currentUser && review.author.id === currentUser.id)
+                    {%>
+                    <form
+                        action="/campgrounds/<%=campground.id%>/reviews/<%=review.id%>?_method=delete"
+                        method="post"
+                        class=""
+                    >
+                        <button class="btn danger">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
                 <% } %>
             </div>
-            <% } %>
         </div>
     </div>
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
     <script src="/campgrounds/js/slider.js"></script>
 </section>

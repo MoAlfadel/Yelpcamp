@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -21,7 +22,6 @@ const MongoStore = require("connect-mongo");
 
 const { User, GoogleUser } = require("./models/user");
 
-const app = express();
 let accountType = null;
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
